@@ -24,7 +24,19 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+            <li class="menu-header">Settings</li>
+            <li>
+                <a class="nav-link" href="blank.html">
+                    <i class="far fa-user"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ url('/app/admin/role') }}">
+                    <i class="far fa-user"></i>
+                    <span>Role</span>
+                </a>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
