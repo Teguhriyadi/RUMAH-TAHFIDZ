@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("username", 50);
             $table->string("email", 100)->unique();
             $table->string("password", 100);
+            $table->text('alamat');
             $table->integer("id_role");
-            $table->rememberToken();
             $table->timestamps();
         });
     }
