@@ -92,7 +92,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#login").on('click', function() {
+            $("#btn-login").on('click', function() {
                 let username = $('#email').val().trim();
                 let password = $('#password').val().trim();
 
@@ -101,9 +101,9 @@
                     console.log("Error");
                 } else {
                     $.ajax({
-                        url: '{{ url("/api/login") }}',
+                        url: 'http://127.0.0.1:8000/api/login',
                         type: "POST",
-                        data: {username: username, password: password, login: 'login'},
+                        data: {username: username, password: password, login: 'btn-login'},
                         success: function (respon) {
                             let timerInterval
                             Swal.fire({
