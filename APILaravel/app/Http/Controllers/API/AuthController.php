@@ -36,12 +36,14 @@ class AuthController extends Controller
                 'telepon' => Auth::user()->telepon,
             ];
 
-            $user = User::where('telepon', $request->telepon)->first();
+            $user = User::where('email', $request->email)->first();
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            LastLogin::create([
+            // LastLogin::create([
 
-            ]);
+            // ]);
+
+            return redirect("/app/admin/home");
 
             return response()->json([
                 'message' => 'Login Success',
@@ -49,6 +51,9 @@ class AuthController extends Controller
                 'token_type' => 'Bearer',
                 'data' => $data
             ], 200);
+
+
+
         } else {
             return response()->json(['message' => 'Login Failed!'], 400);
         }

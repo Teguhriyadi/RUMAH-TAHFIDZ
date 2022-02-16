@@ -26,7 +26,7 @@
             </li>
             <li class="menu-header">Settings</li>
             <li>
-                <a class="nav-link" href="blank.html">
+                <a class="nav-link" href="{{ url('/app/admin/users/') }}">
                     <i class="far fa-user"></i>
                     <span>Users</span>
                 </a>

@@ -20,3 +20,9 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ url('/template') }}/assets/js/page/index-0.js"></script>
+<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
