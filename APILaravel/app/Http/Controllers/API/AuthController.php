@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\LastLogin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,10 @@ class AuthController extends Controller
 
             $user = User::where('telepon', $request->telepon)->first();
             $token = $user->createToken('auth_token')->plainTextToken;
+
+            LastLogin::create([
+
+            ]);
 
             return response()->json([
                 'message' => 'Login Success',
