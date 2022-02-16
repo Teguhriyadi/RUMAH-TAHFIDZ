@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("password", 100);
             $table->text('alamat');
             $table->integer("id_role");
+            $table->string("no_hp", 30);
+            
             $table->timestamps();
         });
     }
