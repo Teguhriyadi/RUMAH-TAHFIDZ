@@ -28,7 +28,7 @@ class AuthController extends Controller
                 'email' => Auth::user()->email,
                 'telepon' => Auth::user()->telepon,
             ];
-            return response()->json(['message' => 'Login Success!', 'data' => $data], 200);
+            return response()->json(['messag' => 'Login Success!', 'data' => $data], 200);
         } else {
             return response()->json(['message' => 'Login Failed!'], 400);
         }
