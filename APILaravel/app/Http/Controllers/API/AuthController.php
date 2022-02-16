@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'email' => 'required',
+            'no_hp' => 'required',
             'password' => 'required'
         ]);
 
@@ -24,7 +24,7 @@ class AuthController extends Controller
         }
 
         $validated = [
-            'email' => $request->email,
+            'no_hp' => $request->no_hp,
             'password' => $request->password
         ];
 
@@ -33,17 +33,11 @@ class AuthController extends Controller
                 'nama' => Auth::user()->nama,
                 'alamat' => Auth::user()->alamat,
                 'email' => Auth::user()->email,
-                'telepon' => Auth::user()->telepon,
+                'no_hp' => Auth::user()->no_hp,
             ];
 
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('no_hp', $request->no_hp)->first();
             $token = $user->createToken('auth_token')->plainTextToken;
-
-            // LastLogin::create([
-
-            // ]);
-
-
 
             return response()->json([
                 'message' => 'Login Success',
@@ -51,9 +45,6 @@ class AuthController extends Controller
                 'token_type' => 'Bearer',
                 'data' => $data
             ], 200);
-
-
-
         } else {
             return response()->json(['message' => 'Login Failed!'], 400);
         }
@@ -63,7 +54,7 @@ class AuthController extends Controller
     {
         $validasi = Validator::make($request->all(), [
             'nama' => 'required',
-            'telepon' => 'required|max:15|unique:users',
+            'no_hp' => 'required|max:15|unique:users',
             'email' => 'email',
             'alamat' => 'required',
             'password' => 'required'
@@ -76,7 +67,7 @@ class AuthController extends Controller
         $cek = User::create([
             'id' => time(),
             'nama' => $request->nama,
-            'telepon' => $request->telepon,
+            'no_hp' => $request->no_hp,
             'email' => $request->email,
             'alamat' => $request->alamat,
             'password' => bcrypt($request->password),
@@ -98,6 +89,45 @@ class AuthController extends Controller
         }
 
         return response()->json($data, 200);
+    }
+
+    public function loginAdmin(Request $request)
+    {
+        $validasi = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors(), 400);
+        }
+
+        $validated = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($validated)) {
+            $data = [
+                'nama' => Auth::user()->nama,
+                'alamat' => Auth::user()->alamat,
+                'email' => Auth::user()->email,
+                'no_hp' => Auth::user()->no_hp,
+                'id_role' => Auth::user()->id_role,
+            ];
+
+            $user = User::where('email', $request->email)->first();
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Login Success',
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'data' => $data
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Login Failed!'], 400);
+        }
     }
 
     public function logout()

@@ -93,37 +93,25 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btn-login").on('click', function() {
-                let username = $('#email').val().trim();
+                let email = $('#email').val().trim();
                 let password = $('#password').val().trim();
-
-                if (username == '' || password == '') {
+                console.log(email, password);
+                if (email == '' || password == '') {
                     //Swal.fire('Ooops!','Form login harap diisi!','error')
                     console.log("Error");
                 } else {
                     $.ajax({
-                        url: 'http://127.0.0.1:8000/api/login',
+                        url: 'http://127.0.0.1:8000/api/login_admin',
                         type: "POST",
-                        data: {username: username, password: password, login: 'btn-login'},
-                        success: function (respon) {
-                            let timerInterval
-                            Swal.fire({
-                                title: 'Harap tunggu',
-                                html: 'Silahkan tunggu beberapa detik.',
-                                timer: 2000,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval)
-                                    response(respon)
-                                }
-                            }).then((result) => {
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    response(respon)
-                                }
-                            })
-
+                        data: {
+                            email: email, 
+                            password: password,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function (response) {
+                            if (response.data.id_role == 1) {
+                                location.href = '{{ url("app/admin/home") }}';
+                            }
                         }
                     })
                 }

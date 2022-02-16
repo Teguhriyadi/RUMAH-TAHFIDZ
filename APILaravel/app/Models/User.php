@@ -40,4 +40,9 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    public function getToken()
+    {
+        return $this->hasOne(Token::class, 'tokenable_id', 'id');
+    }
 }
