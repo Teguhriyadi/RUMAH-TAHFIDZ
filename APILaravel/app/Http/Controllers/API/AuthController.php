@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'telepon' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
@@ -24,7 +24,7 @@ class AuthController extends Controller
         }
 
         $validated = [
-            'telepon' => $request->telepon,
+            'email' => $request->email,
             'password' => $request->password
         ];
 
