@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIRoleController;
 use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,9 @@ Route::get('/', function () {
 
 Route::get("/layouts", [AppController::class, "layouts"]);
 Route::get("/home", [AppController::class, "home"]);
+
+Route::prefix("/app")->group(function() {
+    Route::prefix("/admin")->group(function() {
+        Route::get("/role", [APIRoleController::class, "index"]);
+    });
+});
