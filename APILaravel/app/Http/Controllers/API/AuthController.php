@@ -43,7 +43,7 @@ class AuthController extends Controller
 
             // ]);
 
-            return redirect("/app/admin/home");
+
 
             return response()->json([
                 'message' => 'Login Success',

@@ -28,44 +28,41 @@
                             <div class="card-header"><h4>Login</h4></div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ url('/api/login') }}" class="needs-validation" novalidate="">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Please fill in your email
-                                        </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in your email
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="auth-forgot-password.html" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            please fill in your password
+                                <div class="form-group">
+                                    <div class="d-block">
+                                        <label for="password" class="control-label">Password</label>
+                                        <div class="float-right">
+                                            <a href="auth-forgot-password.html" class="text-small">
+                                                Forgot Password?
+                                            </a>
                                         </div>
                                     </div>
+                                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                    <div class="invalid-feedback">
+                                        please fill in your password
+                                    </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                                            <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
+                                <div class="form-group">
+                                    <button type="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        Login
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">
@@ -92,5 +89,47 @@
     <script src="{{ url('/template') }}/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#login").on('click', function() {
+                let username = $('#email').val().trim();
+                let password = $('#password').val().trim();
+
+                if (username == '' || password == '') {
+                    //Swal.fire('Ooops!','Form login harap diisi!','error')
+                    console.log("Error");
+                } else {
+                    $.ajax({
+                        url: '{{ url("/api/login") }}',
+                        type: "POST",
+                        data: {username: username, password: password, login: 'login'},
+                        success: function (respon) {
+                            let timerInterval
+                            Swal.fire({
+                                title: 'Harap tunggu',
+                                html: 'Silahkan tunggu beberapa detik.',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                    response(respon)
+                                }
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    response(respon)
+                                }
+                            })
+
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
 </body>
 </html>
