@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $table = "tb_role";
+    use HasFactory;
 
-    protected $guarded = [''];
+    protected $table = 'tb_role';
 
     public $timestamps = false;
+
+    protected $fillable = ['id', 'keterangan'];
 }

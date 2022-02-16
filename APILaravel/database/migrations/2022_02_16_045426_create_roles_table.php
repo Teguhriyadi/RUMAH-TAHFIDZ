@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_role', function (Blueprint $table) {
-            $table->id('id');
-            $table->string("nama_role", 100)->nullable();
+            $table->integer('id')->primary();
+            $table->string('keterangan', 10);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_role');
+        Schema::dropIfExists('roles');
     }
 };

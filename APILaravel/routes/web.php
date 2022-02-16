@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\APIRoleController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,21 @@ Route::get('/', function () {
 Route::get("/layouts", [AppController::class, "layouts"]);
 Route::get("/home", [AppController::class, "home"]);
 
+// Buat percobaan, silahkan dihapus kalo nggk dipake
+Route::get("/login", [AppController::class, "home"]);
+
+Route::get("/al-quran", function () {
+    return view('quran');
+});
+
+Route::get("/al-quran/{id}", function ($id) {
+    return view('surat', compact('id'));
+});
+
 Route::prefix("/app")->group(function() {
+
+    Route::get("/login", [LoginController::class, "login"]);
+
     Route::prefix("/admin")->group(function() {
         Route::get("/role", [APIRoleController::class, "index"]);
     });
