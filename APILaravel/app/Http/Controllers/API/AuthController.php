@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\LastLogin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -21,14 +23,32 @@ class AuthController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        if (Auth::attempt(['telepon' => $request->telepon, 'password' => $request->password])) {
+        $validated = [
+            'telepon' => $request->telepon,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($validated)) {
             $data = [
                 'nama' => Auth::user()->nama,
                 'alamat' => Auth::user()->alamat,
                 'email' => Auth::user()->email,
                 'telepon' => Auth::user()->telepon,
             ];
-            return response()->json(['message' => 'Login Success!', 'data' => $data], 200);
+
+            $user = User::where('telepon', $request->telepon)->first();
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            LastLogin::create([
+
+            ]);
+
+            return response()->json([
+                'message' => 'Login Success',
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'data' => $data
+            ], 200);
         } else {
             return response()->json(['message' => 'Login Failed!'], 400);
         }
@@ -49,6 +69,7 @@ class AuthController extends Controller
         }
 
         $cek = User::create([
+            'id' => time(),
             'nama' => $request->nama,
             'telepon' => $request->telepon,
             'email' => $request->email,
@@ -57,9 +78,13 @@ class AuthController extends Controller
             'id_role' => 3
         ]);
 
+        $token = $cek->createToken('auth_token')->plainTextToken;
+
         if ($cek) {
             $data = [
-                'message' => 'Create Success!'
+                'message' => 'Create Success!',
+                'access_token' => $token,
+                'token_type' => 'Bearer'
             ];
         } else {
             $data = [
@@ -68,5 +93,14 @@ class AuthController extends Controller
         }
 
         return response()->json($data, 200);
+    }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Logout Success!'
+        ], 200);
     }
 }
