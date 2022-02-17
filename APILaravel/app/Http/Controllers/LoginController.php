@@ -11,11 +11,7 @@ class LoginController extends Controller
 {
     public function login()
     {
-        if (Auth::check()) {
-            return redirect()->intended("app/admin/home");
-        } else {
-            return view("app.auth.v_login");
-        }
+        return view("app.auth.v_login");
     }
 
     public function loginProses(Request $request)

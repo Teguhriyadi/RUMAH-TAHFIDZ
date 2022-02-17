@@ -19,16 +19,10 @@ class Otentikasi
     public function handle(Request $request, Closure $next, $guard = NULL)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('app/admin/home');
+            return $next($request);
         }
-        return $next($request);
 
-        // return response()->json(['message' => 'Anda belum login!']);
-        // if (!Session::get('akun')) {
-        //     return response()->json(['message' => 'Anda belum login!']);
-        // }
-
-        // return response()->json(['message' => 'Anda sudah login!']);
+        return redirect("/app/login");
 
     }
 }
