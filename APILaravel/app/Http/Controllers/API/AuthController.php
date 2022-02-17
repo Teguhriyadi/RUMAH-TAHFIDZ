@@ -91,45 +91,6 @@ class AuthController extends Controller
         return response()->json($data, 200);
     }
 
-    public function loginAdmin(Request $request)
-    {
-        $validasi = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 400);
-        }
-
-        $validated = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-
-        if (Auth::attempt($validated)) {
-            $data = [
-                'nama' => Auth::user()->nama,
-                'alamat' => Auth::user()->alamat,
-                'email' => Auth::user()->email,
-                'no_hp' => Auth::user()->no_hp,
-                'id_role' => Auth::user()->id_role,
-            ];
-
-            $user = User::where('email', $request->email)->first();
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return response()->json([
-                'message' => 'Login Success',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'data' => $data
-            ], 200);
-        } else {
-            return response()->json(['message' => 'Login Failed!'], 400);
-        }
-    }
-
     public function logout()
     {
         auth()->user()->tokens()->delete();
