@@ -21,8 +21,7 @@ class Otentikasi
         if (Auth::guard($guard)->check()) {
             return $next($request);
         }
-
+        
         return redirect("/app/login");
-
     }
 }
