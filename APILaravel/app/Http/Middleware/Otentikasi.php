@@ -22,6 +22,7 @@ class Otentikasi
             return $next($request);
 
         }
+        return $next($request);
 
         return redirect('app/admin/home');
 

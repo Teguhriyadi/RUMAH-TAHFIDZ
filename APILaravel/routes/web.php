@@ -35,11 +35,12 @@ Route::get("/al-quran/{id}", function ($id) {
     return view('surat', compact('id'));
 });
 
-Route::prefix("/app")->group(function() {
+Route::prefix("/app")->group(function () {
 
-    Route::get("/login", [LoginController::class, "login"]);
+    Route::get("/login", [LoginController::class, "login"])->middleware('otentikasi');
+    Route::post("/login", [LoginController::class, "login"]);
 
-    Route::prefix("/admin")->group(function() {
+    Route::prefix("/admin")->group(function () {
         // Home
         Route::get("/home", [AppController::class, "home"]);
         // Users
