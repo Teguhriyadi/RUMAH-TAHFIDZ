@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Rumah Tahfidz | @yield("app_title")</title>
 
-    @include("app/administrator/layouts/partials/css/style")
+    @include("app.administrator.layouts.partials.css.style")
 </head>
 
 <body>
@@ -16,13 +16,17 @@
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
-                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
+                                    class="fas fa-bars"></i></a></li>
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="{{ url('/template') }}/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                        <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="{{ url('/template') }}/assets/img/avatar/avatar-1.png"
+                                class="rounded-circle mr-1">
+                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
                             <a href="features-profile.html" class="dropdown-item has-icon">
@@ -58,4 +62,5 @@
     @include("app/administrator/layouts/partials/js/style")
 
 </body>
+
 </html>

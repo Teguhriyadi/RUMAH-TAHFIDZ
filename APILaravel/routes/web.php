@@ -37,12 +37,12 @@ Route::get("/al-quran/{id}", function ($id) {
 
 Route::prefix("/app")->group(function () {
 
-    Route::get("/login", [LoginController::class, "login"])->middleware('otentikasi');
+    Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "login"]);
 
     Route::prefix("/admin")->group(function () {
         // Home
-        Route::get("/home", [AppController::class, "home"]);
+        Route::get("/home", [AppController::class, "home"])->middleware('otentikasi');
         // Users
         Route::get("/users", [APIUserController::class, "index"]);
         Route::get("/role", [APIRoleController::class, "index"]);

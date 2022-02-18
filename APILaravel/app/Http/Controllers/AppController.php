@@ -17,8 +17,6 @@ class AppController extends Controller
 
     public function home()
     {
-        $id = Auth::user()->id;
-        $token = Token::where('tokenable_id', $id)->get();
-        return view("/app/administrator/v_home", compact('token'));   
+        return view("app.administrator.v_home");
     }
 }

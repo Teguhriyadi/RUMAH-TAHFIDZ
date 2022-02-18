@@ -1,6 +1,6 @@
 <!-- General CSS Files -->
 <link rel="stylesheet" href="{{ url('/css/style.css') }}">
-<link rel="stylesheet" href="{{ url('/css/font_awesome.css') }}">
+<link rel="stylesheet" href="{{ url('/fontawesome-free/css/all.min.css') }}">
 
 <!-- CSS Libraries -->
 <link rel="stylesheet" href="{{ url('/template') }}/node_modules/jqvmap/dist/jqvmap.min.css">
@@ -12,4 +12,4 @@
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/style.css">
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/components.css">
 
-<link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{ url('datatables') }}/jquery.dataTables.min.css">

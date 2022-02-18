@@ -7,8 +7,8 @@
 <script src="{{ url('/template') }}/assets/js/stisla.js"></script>
 
 <!-- JS Libraies -->
-<script src="{{ url('/template') }}/node_modules/simpleweather/jquery.simpleWeather.min.js"></script>
-<script src="{{ url('/template') }}/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="{{ url('') }}/simpleweather/jquery.simpleWeather.min.js"></script>
+<script src="{{ url('') }}/chart/dist/Chart.min.js"></script>
 <script src="{{ url('/template') }}/node_modules/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="{{ url('/template') }}/node_modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
 <script src="{{ url('/template') }}/node_modules/summernote/dist/summernote-bs4.js"></script>
@@ -20,7 +20,7 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ url('/template') }}/assets/js/page/index-0.js"></script>
-<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="{{ url('datatables') }}/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         $('#myTable').DataTable();
