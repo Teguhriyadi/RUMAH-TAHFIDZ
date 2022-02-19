@@ -115,7 +115,7 @@
                     console.log("Error");
                 } else {
                     $.ajax({
-                        url: 'http://127.0.0.1:8000/app/login',
+                        url: '{{ url("app/login") }}',
                         type: "POST",
                         data: {
                             email: email,

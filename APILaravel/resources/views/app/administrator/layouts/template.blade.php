@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Rumah Tahfidz | @yield("app_title")</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+        <title>Rumah Tahfidz | @yield("app_title")</title>
 
-    @include("app.administrator.layouts.partials.css.style")
+        @include("app.administrator.layouts.partials.css.style")
+        @include("app/administrator/layouts/partials/js/style")
 </head>
 
 <body>
@@ -59,8 +60,8 @@
         </div>
     </div>
 
-    @include("app/administrator/layouts/partials/js/style")
 
+    @yield("app_scripts")
 </body>
 
 </html>

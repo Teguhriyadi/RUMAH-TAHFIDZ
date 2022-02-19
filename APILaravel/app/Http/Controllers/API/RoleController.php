@@ -54,11 +54,13 @@ class RoleController extends Controller
 
         if ($cek) {
             $data = [
-                'message' => 'Create Success!'
+                'message' => 'Create Success!',
+                'status' => true
             ];
         } else {
             $data = [
-                'message' => 'Create Failed!'
+                'message' => 'Create Failed!',
+                'status' => false
             ];
         }
 
@@ -112,11 +114,13 @@ class RoleController extends Controller
 
         if ($cek) {
             $data = [
-                'message' => 'Update Success!'
+                'message' => 'Update Success!',
+                'status' => true
             ];
         } else {
             $data = [
-                'message' => 'Update Failed!'
+                'message' => 'Update Failed!',
+                'status' => false
             ];
         }
 
@@ -138,11 +142,13 @@ class RoleController extends Controller
 
             if ($cek) {
                 $data = [
-                    'message' => 'Delete Success!'
+                    'message' => 'Delete Success!',
+                    'status' => true
                 ];
             } else {
                 $data = [
-                    'message' => 'Delete Failed!'
+                    'message' => 'Delete Failed!',
+                    'status' => false
                 ];
             }
 

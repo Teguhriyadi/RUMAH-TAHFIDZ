@@ -12,4 +12,5 @@
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/style.css">
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/components.css">
 
-<link rel="stylesheet" href="{{ url('datatables') }}/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{ url('datatables') }}/dataTables.bootstrap4.min.css">
+

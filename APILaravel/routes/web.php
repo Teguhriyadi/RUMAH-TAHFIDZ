@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\APIRoleController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\LoginController;
@@ -40,11 +40,17 @@ Route::prefix("/app")->group(function () {
     Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "loginProses"]);
 
+    Route::group(["middleware" => ["otentikasi"]], function() {
+
+    });
+
     Route::prefix("/admin")->group(function () {
         // Home
         Route::get("/home", [AppController::class, "home"])->middleware("otentikasi");
         // Users
         Route::get("/users", [APIUserController::class, "index"]);
-        Route::get("/role", [APIRoleController::class, "index"]);
+        Route::get("/role", function() {
+            return view("/app/administrator/role/index");
+        });
     });
 });

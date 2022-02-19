@@ -21,6 +21,7 @@
 <!-- Page Specific JS File -->
 <script src="{{ url('/template') }}/assets/js/page/index-0.js"></script>
 <script src="{{ url('datatables') }}/jquery.dataTables.min.js"></script>
+<script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         $('#myTable').DataTable();
