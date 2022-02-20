@@ -21,11 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/layouts", [AppController::class, "layouts"]);
-Route::get("/home", [AppController::class, "home"]);
+// Route::get("/layouts", [AppController::class, "layouts"]);
+// Route::get("/home", [AppController::class, "home"]);
 
 // Buat percobaan, silahkan dihapus kalo nggk dipake
-Route::get("/login", [AppController::class, "home"]);
+// Route::get("/login", [AppController::class, "home"]);
 
 Route::get("/al-quran", function () {
     return view('quran');
@@ -40,17 +40,24 @@ Route::prefix("/app")->group(function () {
     Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "loginProses"]);
 
-    Route::group(["middleware" => ["otentikasi"]], function() {
-
-    });
 
     Route::prefix("/admin")->group(function () {
-        // Home
-        Route::get("/home", [AppController::class, "home"])->middleware("otentikasi");
-        // Users
-        Route::get("/users", [APIUserController::class, "index"]);
-        Route::get("/role", function() {
-            return view("/app/administrator/role/index");
+        Route::group(["middleware" => ["otentikasi"]], function() {
+
+            // Home
+            Route::get("/home", [AppController::class, "home"]);
+
+            // Users
+            Route::get("/users", [APIUserController::class, "index"]);
+            Route::get("/role", function() {
+                return view("/app/administrator/role/index");
+            });
+
         });
+    });
+
+    Route::group(["middleware" => ["otentikasi"]], function() {
+        // Logout
+        Route::get("/logout", [LoginController::class, "logout"]);
     });
 });

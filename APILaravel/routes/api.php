@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RoleController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route Percobaan
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return Auth::user();
+});
+
+Route::get('users', function () {
+    $user = User::all();
+
+    return response()->json([
+        'message' => 'Response Successful',
+        'data' => $user
+    ]);
 });
 
 // Authentication
@@ -26,9 +37,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('login_admin', [AuthController::class, 'loginAdmin']);
 Route::post('register', [AuthController::class, 'register']);
 
-// Role
-Route::resource('role', RoleController::class);
-
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
+
+// Role
+Route::resource('role', RoleController::class);

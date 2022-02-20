@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LastLogin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,12 +32,32 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($validated)) {
+            LastLogin::create([
+                'nama' => Auth::user()->nama,
+                'id_user' => Auth::user()->id
+            ]);
+
             $request->session()->regenerate();
+
             return response()->json([
                 'message' => 'Login Success',
             ], 200);
         } else {
             return response()->json(['message' => 'Login Failed!'], 400);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return response()->json([
+            'message' => 'Logout Successful',
+            'status' => true
+        ]);
     }
 }
