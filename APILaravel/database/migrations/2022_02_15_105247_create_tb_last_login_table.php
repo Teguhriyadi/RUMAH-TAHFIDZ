@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('tb_last_login', function (Blueprint $table) {
             $table->id();
             $table->string("nama", 100)->nullable();
-            $table->foreignId("id_users")->nullable();
-            $table->datetime('datetime');
+            $table->foreignId("id_user")->nullable();
+            $table->timestamps();
         });
     }
 

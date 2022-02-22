@@ -148,7 +148,6 @@
                     type : "POST",
                     data : { keterangan : keterangan, _token: "{{ csrf_token() }}" },
                     success : function(response) {
-                        console.log(response)
                         if (response.status == true) {
                             $("#keterangan").val('')
                             tampilData()
