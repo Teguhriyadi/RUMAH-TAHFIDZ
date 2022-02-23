@@ -24,6 +24,12 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="nav-link" href="{{ url('/app/admin/siswa') }}">
+                    <i class="fa fa-user"></i>
+                    <span>Siswa</span>
+                </a>
+            </li>
             <li class="menu-header">Settings</li>
             <li>
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">

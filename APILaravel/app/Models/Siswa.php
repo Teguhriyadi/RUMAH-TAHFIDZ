@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     use HasFactory;
+
+    protected $table = "tb_siswa";
+
+    protected $guarded = [''];
+
+    public $timestamps = false;
 }

@@ -52,6 +52,9 @@ Route::prefix("/app")->group(function () {
             Route::get("/role", function() {
                 return view("/app/administrator/role/index");
             });
+            Route::get("/siswa", function() {
+                return view();
+            });
 
         });
     });

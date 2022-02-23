@@ -43,3 +43,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // Role
 Route::resource('role', RoleController::class);
+Route::resource('santri', UserController::class);
