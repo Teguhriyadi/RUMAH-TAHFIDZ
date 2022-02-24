@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("nama", 50);
             $table->enum("jenis_kelamin", ['L', 'P']);
             $table->text("alamat");
-            
+            $table->string("telepon", 30);
             $table->timestamps();
         });
     }
