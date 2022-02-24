@@ -91,8 +91,8 @@
 
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['keterangan'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button>'
-                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')">Hapus</button>'
+                        aksiCell.innerHTML = '<button class="btn btn-warning text-center" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button>'
+
                     }
                 }
             }
@@ -147,47 +147,6 @@
             }
         })
     })
-
-    function hapusData(id)
-    {
-        Swal.fire({
-            title : "Apakah Yakin ?",
-            text : "Untuk Menghapus Data Ini",
-            icon : "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url : "{{ url('/api/status_absen/') }}/" + id,
-                    type : "POST",
-                    data : { _token: "{{ csrf_token() }}", _method : "DELETE" },
-                    success : function(response) {
-                        console.log(response)
-                        if (response.status == true) {
-                            tampilData()
-                            Swal.fire(
-                                'Berhasil!',
-                                'Data Berhasil di Hapus',
-                                'success'
-                            )
-                        } else {
-                            Swal.fire(
-                                'Gagal!',
-                                'Data Gagal di Hapus',
-                                'error'
-                            )
-                        }
-                    }
-                })
-            } else {
-
-            }
-        })
-    }
-
 
     tampilData();
 </script>
