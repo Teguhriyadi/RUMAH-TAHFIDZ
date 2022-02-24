@@ -40,7 +40,12 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "jenis_kelamin" => "required",
+            "alamat" => "required",
+            "nama_ayah" => "required",
+            "nama_ibu" => "required",
+            "no_hp" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -49,7 +54,12 @@ class SiswaController extends Controller
 
         $cek = Siswa::create([
             'id' => time(),
-            'keterangan' => $request->keterangan
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'no_hp' => $request->no_hp
         ]);
 
         if ($cek) {
@@ -101,7 +111,12 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'no_hp' => 'required'
         ]);
 
         if ($validasi->fails()) {
@@ -109,7 +124,12 @@ class SiswaController extends Controller
         }
 
         $cek = Siswa::where('id', $id)->update([
-            'keterangan' => $request->keterangan
+            "nama" => $request->nama,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "alamat" => $request->alamat,
+            "nama_ayah" => $request->nama_ayah,
+            "nama_ibu" => $request->nama_ibu,
+            "no_hp" => $request->no_hp,
         ]);
 
         if ($cek) {
