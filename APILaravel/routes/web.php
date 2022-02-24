@@ -61,6 +61,7 @@ Route::prefix("/app")->group(function () {
             Route::get("/status_absen", function() {
                 return view("/app/administrator/status_absen/index");
             });
+            Route::get("/informasi_login", [AppController::class, "informasi_login"]);
 
         });
     });
