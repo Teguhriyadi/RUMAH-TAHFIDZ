@@ -7,7 +7,7 @@
     <title>Rumah Tahfidz | @yield("app_title")</title>
 
     @include("app.administrator.layouts.partials.css.style")
-    @include("app/administrator/layouts/partials/js/style")
+    @include("app.administrator.layouts.partials.js.style")
 </head>
 
 <body>
