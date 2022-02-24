@@ -29,6 +29,12 @@
                     <span>Siswa</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ url('/app/admin/pengajar') }}">
+                    <i class="fa fa-user"></i>
+                    <span>Pengajar</span>
+                </a>
+            </li>
             <li class="menu-header">Settings</li>
             <li>
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">

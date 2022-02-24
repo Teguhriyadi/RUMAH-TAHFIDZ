@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pengajar extends Model
 {
     use HasFactory;
+
+    protected $table = "tb_pengajar";
+
+    protected $guarded = [''];
 }

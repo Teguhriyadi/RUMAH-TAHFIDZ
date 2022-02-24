@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SiswaController;
+use App\Http\Controllers\API\PengajarController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,3 +46,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // Role
 Route::resource('role', RoleController::class);
 Route::resource('siswa', SiswaController::class);
+Route::resource('pengajar', PengajarController::class);

@@ -55,6 +55,9 @@ Route::prefix("/app")->group(function () {
             Route::get("/siswa", function() {
                 return view("/app/administrator/siswa/index");
             });
+            Route::get("/pengajar", function() {
+                return view("/app/administrator/pengajar/index");
+            });
 
         });
     });
