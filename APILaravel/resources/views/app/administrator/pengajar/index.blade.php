@@ -91,7 +91,7 @@
 <!-- END -->
 
 <!-- Edit Data -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalTambah">
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -129,7 +129,7 @@
 
                 <div class="form-group">
                     <label for="alamat"> Alamat </label>
-                    <textarea name="alamat" id="addres" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
+                    <textarea name="alamat" id="address" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
                 </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">
@@ -239,11 +239,9 @@
             let nama = $("#nm").val().trim();
             let jenis_kelamin = $("#jk").val().trim();
             let alamat = $("#address").val().trim();
-            let nama_ayah = $("#ayah").val().trim();
-            let nama_ibu = $("#ibu").val().trim();
-            let no_hp = $("#hp").val().trim();
+            let telepon = $("#tlp").val().trim();
 
-            if (nama == "", jenis_kelamin == "", alamat == "", nama_ayah == "", nama_ibu == "", no_hp == "") {
+            if (nama == "", jenis_kelamin == "", alamat == "", telepon == "") {
                 Swal.fire({
                     title : "Oops",
                     text : "Data tidak boleh kosong",
@@ -251,9 +249,9 @@
                 })
             } else {
                 $.ajax({
-                    url : "{{ url('/api/siswa/') }}/" + id,
+                    url : "{{ url('/api/pengajar/') }}/" + id,
                     type : "POST",
-                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, _token: "{{ csrf_token() }}", _method : "PUT" },
+                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, telepon : telepon, _token: "{{ csrf_token() }}", _method : "PUT" },
                     success : function(response) {
                         console.log(response)
                         if (response.status == true) {
@@ -261,9 +259,7 @@
                             $("#nm").val('')
                             $("#jk").val()
                             $("#address").val()
-                            $("#ayah").val()
-                            $("#ibu").val()
-                            $("#hp").val()
+                            $("#tlp").val()
                             tampilData()
                             $("#modalEdit").modal('hide')
                             Swal.fire({
