@@ -58,6 +58,9 @@ Route::prefix("/app")->group(function () {
             Route::get("/pengajar", function() {
                 return view("/app/administrator/pengajar/index");
             });
+            Route::get("/status_absen", function() {
+                return view("/app/administrator/status_absen/index");
+            });
 
         });
     });
