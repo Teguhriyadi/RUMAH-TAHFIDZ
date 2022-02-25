@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_role', function (Blueprint $table) {
+        Schema::create('tb_status_absen', function (Blueprint $table) {
             $table->id();
-            $table->string('keterangan', 10);
+            $table->string('keterangan');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('tb_status_absen');
     }
 };

@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_absensi', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->primary();
             $table->foreignId("id_siswa");
-            $table->datetime("tanggal_absen");
             $table->text("keterangan")->nullable();
             $table->tinyInteger("status_absen");
             $table->integer("id_pengajar");

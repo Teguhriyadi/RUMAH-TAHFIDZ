@@ -4,6 +4,8 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SiswaController;
 use App\Http\Controllers\API\PengajarController;
+use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\StatusAbsenController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +37,11 @@ Route::get('users', function () {
 });
 
 // Authentication
-Route::post('login', [AuthController::class, 'login']);
-Route::post('login_admin', [AuthController::class, 'loginAdmin']);
-Route::post('register', [AuthController::class, 'register']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('login_admin', 'loginAdmin');
+    Route::post('register', 'register');
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -45,5 +49,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // Role
 Route::resource('role', RoleController::class);
+
+// Siswa
 Route::resource('siswa', SiswaController::class);
+
+// Pengajar
 Route::resource('pengajar', PengajarController::class);
+
+// Absensi
+Route::resource('absensi', AbsensiController::class);
+
+// Status Absen
+Route::resource('status_absen', StatusAbsenController::class);

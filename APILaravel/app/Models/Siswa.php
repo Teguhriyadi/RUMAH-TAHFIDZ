@@ -11,7 +11,5 @@ class Siswa extends Model
 
     protected $table = "tb_siswa";
 
-    protected $guarded = [''];
-
-    public $timestamps = false;
+    protected $guarded = ['created_at', 'updated_at'];
 }

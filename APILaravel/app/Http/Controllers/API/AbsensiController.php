@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use App\Models\Absensi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RoleController extends Controller
+class AbsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,26 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
+        $absensi = Absensi::all();
 
-        return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
+        $dataAll = array();
+
+        foreach ($absensi as $a) {
+            $dataAll[] = [
+                'siswa' => $a->getSiswa->nama,
+                'keterangan' => $a->keterangan,
+                'status_absen' => $a->getStatusAbsen->keterangan,
+                'pengajar' => $a->getPengajar->nama,
+                'tgl_absensi' => Carbon::createFromFormat('Y-m-d H:i:s', $a->created_at)->isoFormat('D MMMM Y')
+            ];
+        }
+
+        $data = [
+            'message' => 'Request Success!',
+            'data' => $dataAll,
+        ];
+
+        return response()->json($data, 200);
     }
 
     /**
@@ -40,15 +58,22 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validasi = Validator::make($request->all(), [
+            'id_siswa' => 'required',
             'keterangan' => 'required',
+            'status_absen' => 'required',
+            'id_pengajar' => 'required',
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Role::create([
-            'keterangan' => $request->keterangan
+        $cek = Absensi::create([
+            'id' => time(),
+            'id_siswa' => $request->id_siswa,
+            'keterangan' => $request->keterangan,
+            'status_absen' => $request->status_absen,
+            'id_pengajar' => $request->id_pengajar,
         ]);
 
         if ($cek) {
@@ -74,9 +99,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $data = Role::findOrfail($id);
-
-        return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
+        //
     }
 
     /**
@@ -99,31 +122,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
-        ]);
-
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 400);
-        }
-
-        $cek = Role::where('id', $id)->update([
-            'keterangan' => $request->keterangan
-        ]);
-
-        if ($cek) {
-            $data = [
-                'message' => 'Update Success!',
-                'status' => true
-            ];
-        } else {
-            $data = [
-                'message' => 'Update Failed!',
-                'status' => false
-            ];
-        }
-
-        return response()->json($data, 200);
+        //
     }
 
     /**
@@ -134,26 +133,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::findOrfail($id);
-
-        if ($role) {
-            $cek = $role->delete();
-
-            if ($cek) {
-                $data = [
-                    'message' => 'Delete Success!',
-                    'status' => true
-                ];
-            } else {
-                $data = [
-                    'message' => 'Delete Failed!',
-                    'status' => false
-                ];
-            }
-
-            return response()->json($data, 200);
-        }
-
-        return response()->json(['message' => 'Not Found!'], 404);
+        //
     }
 }
