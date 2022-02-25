@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tahfidz/Iiem-menu.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -30,9 +31,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             Positioned(
-              top: 130,
+              top: 100,
               width: widhtBody / 1.25,
-              height: heightBody / 2.5,
+              height: heightBody / 2.7,
               child: Card(
                 color: Colors.white,
                 shape: OutlineInputBorder(
@@ -71,7 +72,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ]),
                 ),
               ),
-            ),
+            ), //Hero Section
+            Positioned(
+              bottom: 0,
+              // width: widhtBody / 1.25,
+              // height: heightBody / 2.5,
+              child: Container(
+                color: Colors.white,
+                child: Wrap(
+                  spacing: 17,
+                  runSpacing: 17,
+                  children: [
+                    ItemMenu(
+                        title: 'Expend', icon: Icons.home, color: 0xffFED525),
+                    ItemMenu(
+                        title: 'Collection',
+                        icon: Icons.star,
+                        color: 0xffFD637B),
+                    ItemMenu(
+                        title: 'Incomes',
+                        icon: Icons.monetization_on,
+                        color: 0xff21CDFF),
+                    ItemMenu(
+                        title: 'Sales',
+                        icon: Icons.show_chart,
+                        color: 0xff7585F6)
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ItemMenu extends StatelessWidget {
-  final String title;
+  final String? title;
   final dynamic icon;
   final dynamic color;
-  ItemMenu(this.title, this.icon, this.color);
+  ItemMenu({this.title, this.icon, this.color});
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -27,7 +27,7 @@ class ItemMenu extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 10),
           ),
           Text(
-            title,
+            title!,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
