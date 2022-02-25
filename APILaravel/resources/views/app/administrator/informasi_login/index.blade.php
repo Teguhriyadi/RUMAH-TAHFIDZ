@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="tampilData">
+                        <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
@@ -30,11 +30,12 @@
                                 @php
                                     $no = 0
                                 @endphp
-                                @foreach ($user_login as $data)
-                                    <tr>
-                                        <td class="">{{ ++$no }}.</td>
-                                        <td>{{ $data->nama }}</td>
-                                    </tr>
+                                @foreach($user_login as $data)
+                                <tr>
+                                    <td class="text-center">{{ ++$no }}.</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->created_at }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -44,23 +45,5 @@
         </div>
     </div>
 </section>
-
-@endsection
-
-@section("app_scripts")
-
-<script type="text/javascript">
-
-    function tampilData() {
-        let empTable = document.getElementById("tampilData").getElementsByTagName("tbody")[0];
-        empTable.innerHTML = "";
-        $.ajax({
-            url: "{{ url('') }}/api/"
-        });
-    }
-
-    tampilData();
-
-</script>
 
 @endsection
