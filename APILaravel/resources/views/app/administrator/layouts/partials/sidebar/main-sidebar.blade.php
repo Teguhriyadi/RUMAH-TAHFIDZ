@@ -54,6 +54,12 @@
                     <span>Role</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ url('/app/admin/informasi_login') }}">
+                    <i class="fa fa-key"></i>
+                    <span>Informasi Login</span>
+                </a>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
