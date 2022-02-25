@@ -90,66 +90,78 @@
                     <div class="statistic-details mt-sm-4">
                         <div class="statistic-details-item">
                             <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>
-                                7%</span>
+                            7%</span>
                             <div class="detail-value">$243</div>
                             <div class="detail-name">Today's Sales</div>
                         </div>
                         <div class="statistic-details-item">
                             <span class="text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span>
-                                23%</span>
+                            23%</span>
                             <div class="detail-value">$2,902</div>
                             <div class="detail-name">This Week's Sales</div>
                         </div>
                         <div class="statistic-details-item">
                             <span class="text-muted"><span class="text-primary"><i
-                                        class="fas fa-caret-up"></i></span>9%</span>
-                            <div class="detail-value">$12,821</div>
-                            <div class="detail-name">This Month's Sales</div>
-                        </div>
-                        <div class="statistic-details-item">
-                            <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>
-                                19%</span>
-                            <div class="detail-value">$92,142</div>
-                            <div class="detail-name">This Year's Sales</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-12 col-12 col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Informasi Login</h4>
-                </div>
-                <div class="card-body">
-                    <ul class="list-unstyled list-unstyled-border">
-                        @php
-                            use Carbon\Carbon;
-                        @endphp
-                        @foreach ($user_login as $login)
-                        @php
-                            $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $login->created_at);
-                        @endphp
-                        <li class="media">
-                            <img class="mr-3 rounded-circle" width="50"
-                                src="{{ url('/template') }}/assets/img/avatar/avatar-2.png" alt="avatar">
-                            <div class="media-body">
-                                <div class="float-right text-primary">{{ $dataTime->diffForHumans() }}</div>
-                                <div class="media-title">{{ $login->nama }}</div>
-                                <span class="text-small text-muted"></span>
+                                class="fas fa-caret-up"></i></span>9%</span>
+                                <div class="detail-value">$12,821</div>
+                                <div class="detail-name">This Month's Sales</div>
                             </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                    <div class="text-center pt-1 pb-1">
-                        <a href="{{ url('/app/admin/informasi_login') }}" class="btn btn-primary btn-lg btn-round">
-                            View All
-                        </a>
+                            <div class="statistic-details-item">
+                                <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>
+                                19%</span>
+                                <div class="detail-value">$92,142</div>
+                                <div class="detail-name">This Year's Sales</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Informasi Login</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled list-unstyled-border">
+                            @php
+                            use Carbon\Carbon;
+                            @endphp
+                            @foreach ($user_login as $login)
+                            @php
+                            $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $login->created_at);
+                            @endphp
+                            <li class="media">
+                                <img class="mr-3 rounded-circle" width="50"
+                                src="{{ url('/template') }}/assets/img/avatar/avatar-2.png" alt="avatar">
+                                <div class="media-body">
+                                    <div class="float-right text-primary">{{ $dataTime->diffForHumans() }}</div>
+                                    <div class="media-title">{{ $login->nama }}</div>
+                                    <span class="text-small text-muted"></span>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        <div class="text-center pt-1 pb-1">
+                            <a href="{{ url('/app/admin/informasi_login') }}" class="btn btn-primary btn-lg btn-round">
+                                View All
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-@endsection
+    @endsection
+
+    {{-- @section("app_scripts")
+
+    <script type="text/javascript">
+        Swal.fire({
+            title : "Berhasil",
+            text : "Berhasil di Simpan",
+            icon : "success"
+        })
+    </script>
+
+    @endsection --}}
