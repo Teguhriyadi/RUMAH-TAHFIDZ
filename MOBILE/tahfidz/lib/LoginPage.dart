@@ -28,18 +28,17 @@ class _LoginPageState extends State<LoginPage> {
               "no_hp": "${_controllerTelepon.text}",
               "password": "${_controllerPassword.text}",
             }));
-        print(response);
-        // if (response.data['status'] == true) {
-        //   setState(() {
-        //     _controllerTelepon.text = "";
-        //     _controllerPassword.text = "";
-        //   });
-        //   Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
-        // } else {
-        //   setState(() {
-        //     sendLoginFailed();
-        //   });
-        // }
+        if (response.data['status'] == true) {
+          setState(() {
+            _controllerTelepon.text = "";
+            _controllerPassword.text = "";
+          });
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+        } else {
+          setState(() {
+            sendLoginFailed();
+          });
+        }
       } on DioError catch (e) {
         print(e);
       }
