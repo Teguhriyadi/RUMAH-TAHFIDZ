@@ -13,7 +13,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.blue,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -79,3 +78,4 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
+
