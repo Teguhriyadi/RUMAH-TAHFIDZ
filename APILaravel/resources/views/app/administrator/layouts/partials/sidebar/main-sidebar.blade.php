@@ -35,6 +35,12 @@
                     <span>Pengajar</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ url('/app/admin/status_absen') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Status Absen</span>
+                </a>
+            </li>
             <li class="menu-header">Settings</li>
             <li>
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">
