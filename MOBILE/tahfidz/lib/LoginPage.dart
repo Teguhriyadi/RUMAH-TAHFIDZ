@@ -1,88 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-
-// class LoginPage extends StatelessWidget {
-//   const LoginPage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       body: SingleChildScrollView(
-//         child: Container(
-//           child: Column(
-//             children: <Widget>[
-//               Container(
-//                 height: 400,
-//                 decoration: const BoxDecoration(
-//                   image: DecorationImage(
-//                       image: AssetImage('assets/images/background.png'),
-//                       fit: BoxFit.fill),
-//                 ),
-//                 child: Stack(
-//                   children: <Widget>[
-//                     Positioned(
-//                       left: 140,
-//                       width: 80,
-//                       height: 150,
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           image: DecorationImage(
-//                               image: AssetImage('assets/images/light-1.png'),
-//                               fit: BoxFit.fill),
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       right: 40,
-//                       top: 40,
-//                       width: 80,
-//                       height: 150,
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           image: DecorationImage(
-//                               image: AssetImage('assets/images/light-1.png'),
-//                               fit: BoxFit.fill),
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       right: 80,
-//                       top: 40,
-//                       width: 80,
-//                       height: 150,
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           image: DecorationImage(
-//                               image: AssetImage('assets/images/light-1.png'),
-//                               fit: BoxFit.fill),
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       child: Container(
-//                         margin: EdgeInsets.only(top: 50),
-//                         child: Center(
-//                           child: Text(
-//                             "Masuk",
-//                             style: TextStyle(
-//                                 color: Colors.white,
-//                                 fontSize: 40,
-//                                 fontWeight: FontWeight.bold,
-//                                 fontFamily: 'poppins'),
-//                           ),
-//                         ),
-//                       ),
-//                     )
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -92,14 +11,69 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool hide = true;
   @override
   Widget build(BuildContext context) {
+    TextEditingController _controllerTelepon = new TextEditingController();
+    TextEditingController _controllerPassword = new TextEditingController();
+    final fieldTelepon = TextFormField(
+      controller: _controllerTelepon,
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(
+          hintText: "Telepon",
+          prefixIcon: const Icon(Icons.phone),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+    );
+    final fieldPassword = TextFormField(
+      controller: _controllerPassword,
+      decoration: InputDecoration(
+        hintText: "Password",
+        prefixIcon: Icon(Icons.lock),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+    );
+    final loginText = Center(
+        child: Text(
+      "Masuk",
+      style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+    ));
+    final loginButton = FlatButton(
+      color: Colors.deepPurple,
+      height: 50,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        // side: BorderSide(color: Colors.red),
+      ),
+      onPressed: () {
+        Fluttertoast.showToast(
+            msg: "LOGIN GAGAL, ",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      },
+      child: Text(
+        "Login",
+        style: TextStyle(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+      ),
+    );
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: SingleChildScrollView(
         child: Stack(
           children: [
+            Container(
+              // background: Color.fromARGB(255, 240, 238, 243),
+              padding: EdgeInsets.all(40),
+              child: Center(
+                  child: Text(
+                "RUmah Tahfidx",
+              )),
+            ),
             Container(
               margin: EdgeInsets.only(top: 400),
               width: double.infinity,
@@ -111,32 +85,46 @@ class _LoginPageState extends State<LoginPage> {
                       topLeft: Radius.circular(40))),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-              margin: EdgeInsets.only(top: 200, left: 50, right: 50),
-              width: double.infinity,
-              height: 400,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black38, spreadRadius: 0.1, blurRadius: 5)
-                  ]),
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: "Nomor Telepon",
-                        prefixIcon: Icon(Icons.phone),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20))),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                margin: EdgeInsets.only(top: 200, left: 50, right: 50),
+                width: double.infinity,
+                height: 400,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black38,
+                          spreadRadius: 0.1,
+                          blurRadius: 5)
+                    ]),
+                child: Form(
+                  child: ListView(
+                    padding: EdgeInsets.all(30),
+                    children: [
+                      loginText,
+                      SizedBox(height: 35),
+                      fieldTelepon,
+                      SizedBox(height: 35),
+                      fieldPassword,
+                      SizedBox(height: 35),
+                      loginButton,
+                    ],
                   ),
-                ],
-              ),
-            )
+                ))
           ],
         ),
       ),
     );
+    void sendLoginFailed() {
+      Fluttertoast.showToast(
+          msg: "LOGIN GAGAL, ",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 }
