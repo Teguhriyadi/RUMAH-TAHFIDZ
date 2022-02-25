@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePicture extends StatelessWidget {
   // const ProfilePicture({Key? key}) : super(key: key);
 
   final double? sizeAvatar;
-  final double? sizeIconAvatar;
-  const ProfilePicture({this.sizeAvatar, this.sizeIconAvatar});
+  final double? sizeBtn;
+  final double? sizeIcon;
+
+  const ProfilePicture({this.sizeAvatar, this.sizeBtn, this.sizeIcon});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,29 +22,31 @@ class ProfilePicture extends StatelessWidget {
             backgroundImage: AssetImage("assets/images/avatar.png"),
           ),
           Positioned(
-            right: -16,
-            bottom: 0,
-            child: SizedBox(
-              height: sizeIconAvatar,
-              width: sizeIconAvatar,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.white,
-                  backgroundColor: Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                  size: sizeIconAvatar,
-                ),
+      right: 3,
+      bottom: 3,
+      child: SizedBox(
+        height: sizeBtn,
+        width: sizeBtn,
+        child: Center(
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+                side: BorderSide(color: Colors.white),
               ),
+              // primary: Colors.white,
+              backgroundColor: Color.fromARGB(255, 15, 75, 255),
             ),
-          )
+            onPressed: () {Get.to(page)},
+            child: Icon(
+              Icons.edit,
+              color: Colors.white,
+              size: sizeIcon,
+            ),
+          ),
+        ),
+      ),
+    ),
         ],
       ),
     );

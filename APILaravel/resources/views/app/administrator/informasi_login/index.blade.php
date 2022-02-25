@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends("app/administrator/layouts/template")
 
 @section("app_title", "Data Informasi Login")
@@ -40,7 +43,7 @@
                                 <tr>
                                     <td class="text-center">{{ ++$no }}.</td>
                                     <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y H:mm:s') }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

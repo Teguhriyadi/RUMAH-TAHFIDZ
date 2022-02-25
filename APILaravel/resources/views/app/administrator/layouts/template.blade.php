@@ -30,14 +30,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Online</div>
-                            <a href="features-profile.html" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profile
+                            <a href="#" class="dropdown-item has-icon">
+                                <i class="far fa-user"></i> Profil Saya
                             </a>
-                            <a href="features-activities.html" class="dropdown-item has-icon">
-                                <i class="fas fa-bolt"></i> Activities
-                            </a>
-                            <a href="features-settings.html" class="dropdown-item has-icon">
-                                <i class="fas fa-cog"></i> Settings
+                            <a href="{{ url('app/admin/informasi_login') }}" class="dropdown-item has-icon">
+                                <i class="fas fa-bolt"></i> Aktifitas Login
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" onclick="logout()" class="dropdown-item has-icon text-danger">
@@ -84,7 +81,13 @@
                         type: 'get',
                         success: function (response) {
                             if (response.status == true) {
-                                location.href = '{{ url("/app/login") }}'
+                                Swal.fire({
+                                    title: 'Selamat!',
+                                    text: 'Anda berhasil logout',
+                                    icon: 'success'
+                                }).then((result) => {
+                                    location.href = '{{ url("/app/login") }}'
+                                })
                             }
                         }
                     })

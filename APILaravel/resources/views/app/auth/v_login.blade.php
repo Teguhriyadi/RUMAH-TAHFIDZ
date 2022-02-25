@@ -119,37 +119,72 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
     }
 
     function proses(no_hp, password) {
+
         $.ajax({
             url: '{{ url("app/login") }}',
             type: "POST",
-            data: {
-                no_hp: no_hp,
+            data: {no_hp: no_hp,
                 password: password,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function (response) {
-                if (response.status == 1) {
-                    location.href = '{{ url("app/admin/home") }}';
-                } else {
-                    $("#error-login").css('display', 'block')
+                _token: '{{ csrf_token() }}'},
+                success: function (respon) {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Harap tunggu',
+                        html: 'Silahkan tunggu beberapa detik.',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            if (respon.status == 1) {
+                                Swal.fire({
+                                    title: 'Selamat!',
+                                    text: 'Anda berhasil login',
+                                    icon: 'success'
+                                }).then((result2) => {
+                                    location.href = '{{ url("app/admin/home") }}';
+                                })
+                            } else {
+                                $("#error-login").css('display', 'block');
+                                $("#password").val('')
+                            }
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            if (respon.status == 1) {
+                                Swal.fire({
+                                    title: 'Selamat!',
+                                    text: 'Anda berhasil login',
+                                    icon: 'success'
+                                }).then((result2) => {
+                                    location.href = '{{ url("app/admin/home") }}';
+                                })
+                            } else {
+                                $("#error-login").css('display', 'block');
+                                $("#password").val('')
+                            }
+                        }
+                    })
+
                 }
-            }
-        })
-    }
+            })
+        }
 
-    $(document).ready(function () {
-        $("#btn-login").on('click', function() {
-            validasi();
-        });
-
-        $("input").on('keypress', function (e) {
-            if(e.keyCode == 13)
-            {
+        $(document).ready(function () {
+            $("#btn-login").on('click', function() {
                 validasi();
-            }
-        });
-    })
-</script>
+            });
+
+            $("input").on('keypress', function (e) {
+                if(e.keyCode == 13)
+                {
+                    validasi();
+                }
+            });
+        })
+    </script>
 
 </body>
 
