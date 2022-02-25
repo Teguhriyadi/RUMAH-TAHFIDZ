@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="profile-widget-description">
-                        <div class="profile-widget-name">Ujang Maman <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Web Developer</div></div>
+                        <div class="profile-widget-name">{{ auth()->user()->nama }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{ auth()->user()->getRole }}</div></div>
                         Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
                     </div>
                     <div class="card-footer text-center">
