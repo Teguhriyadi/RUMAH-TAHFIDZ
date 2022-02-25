@@ -41,9 +41,13 @@ class LoginController extends Controller
 
             return response()->json([
                 'message' => 'Login Success',
+                'status' => 1
             ], 200);
         } else {
-            return response()->json(['message' => 'Login Failed!'], 400);
+            return response()->json([
+                'message' => 'Login Failed!',
+                'status' => 0
+            ], 200);
         }
     }
 

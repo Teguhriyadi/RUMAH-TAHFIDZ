@@ -30,10 +30,15 @@
                         </div>
 
                         <div class="card-body">
+
+                            <div class="alert alert-danger" id="error-login" style="display: none">
+                                Login gagal, harap periksa kembali akun anda!
+                            </div>
+
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" id="error-email">
                                     Please fill in your email
                                 </div>
                             </div>
@@ -41,7 +46,7 @@
                             <div class="form-group">
                                 <label for="password" class="control-label">Password</label>
                                 <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" id="error-password">
                                     please fill in your password
                                 </div>
                             </div>
@@ -72,6 +77,7 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="{{ url('/template') }}/assets/js/stisla.js"></script>
+<script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
 <!-- JS Libraies -->
 
@@ -82,38 +88,64 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 <!-- Page Specific JS File -->
 
 <script type="text/javascript">
-    function proses() {
+    function validasi() {
         let email = $('#email').val().trim();
         let password = $('#password').val().trim();
-        console.log(email, password);
-        if (email == '' || password == '') {
-            //Swal.fire('Ooops!','Form login harap diisi!','error')
-            console.log("Error");
+
+        if (email == '' && password == '') {
+            $('#email, #password').addClass('is-invalid')
+            $('.invalid-feedback').css('display', 'block')
+        } else if (email == '') {
+            $('#email').addClass('is-invalid')
+            $('#error-email').css('display', 'block')
+        } else if (password == '') {
+            $('#password').addClass('is-invalid')
+            $('#error-password').css('display', 'block')
         } else {
-            $.ajax({
-                url: '{{ url("app/login") }}',
-                type: "POST",
-                data: {
-                    email: email,
-                    password: password,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function (response) {
-                    location.href = '{{ url("app/admin/home") }}';
-                }
-            })
+            proses(email, password)
         }
+
+        $('#email').change(function () {
+            $(this).removeClass('is-invalid')
+            $('#error-email').css('display', 'none')
+            $("#error-login").css('display', 'none')
+        })
+
+        $('#password').change(function () {
+            $(this).removeClass('is-invalid')
+            $('#error-password').css('display', 'none')
+            $("#error-login").css('display', 'none')
+        })
+    }
+
+    function proses(email, password) {
+        $.ajax({
+            url: '{{ url("app/login") }}',
+            type: "POST",
+            data: {
+                email: email,
+                password: password,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+                if (response.status == 1) {
+                    location.href = '{{ url("app/admin/home") }}';
+                } else {
+                    $("#error-login").css('display', 'block')
+                }
+            }
+        })
     }
 
     $(document).ready(function () {
         $("#btn-login").on('click', function() {
-            proses();
+            validasi();
         });
 
         $("input").on('keypress', function (e) {
             if(e.keyCode == 13)
             {
-                proses();
+                validasi();
             }
         });
     })
