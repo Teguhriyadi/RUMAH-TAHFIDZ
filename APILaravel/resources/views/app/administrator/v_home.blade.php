@@ -6,7 +6,10 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Dashboard</h1>
+        <h1>Home</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item">Home</div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -139,7 +142,7 @@
                         @endforeach
                     </ul>
                     <div class="text-center pt-1 pb-1">
-                        <a href="#" class="btn btn-primary btn-lg btn-round">
+                        <a href="{{ url('/app/admin/informasi_login') }}" class="btn btn-primary btn-lg btn-round">
                             View All
                         </a>
                     </div>

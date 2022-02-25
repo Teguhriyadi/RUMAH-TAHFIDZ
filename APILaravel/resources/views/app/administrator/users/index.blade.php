@@ -9,10 +9,7 @@
         <h1>Users</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active">
-                <a href="{{ url('/app/admin/home') }}">Dashboard</a>
-            </div>
-            <div class="breadcrumb-item">
-                <a href="{{ url('/app/admin/users') }}">Users</a>
+                <a href="{{ url('/app/admin/home') }}">Home</a>
             </div>
             <div class="breadcrumb-item">Data Users</div>
         </div>
@@ -165,6 +162,7 @@
                             $("#password").val('')
                             $("#id_role").val('')
                             tampilData()
+                            $("#modalTambah").modal('hide')
                             Swal.fire({
                                 title : "Berhasil",
                                 text : "Berhasil di Tambahkan",

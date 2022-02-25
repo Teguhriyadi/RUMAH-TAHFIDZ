@@ -51,6 +51,7 @@ class UsersController extends Controller
         }
 
         $cek = User::create([
+            "id" => time(),
             "nama" => $request->nama,
             "email" => $request->email,
             "password" => $request->password,

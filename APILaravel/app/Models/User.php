@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Token::class, 'tokenable_id', 'id');
     }
+
+    public function getRole()
+    {
+        return $this->belongsTo();
+    }
 }
