@@ -107,7 +107,10 @@ class PengajarController extends Controller
     public function update(Request $request, $id)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "jenis_kelamin" => "required",
+            "alamat" => "required",
+            "telepon" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -115,7 +118,10 @@ class PengajarController extends Controller
         }
 
         $cek = Pengajar::where('id', $id)->update([
-            'keterangan' => $request->keterangan
+            "nama" => $request->nama,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "alamat" => $request->alamat,
+            "telepon" => $request->telepon
         ]);
 
         if ($cek) {
