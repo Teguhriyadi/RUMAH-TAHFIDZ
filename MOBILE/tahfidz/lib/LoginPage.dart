@@ -46,14 +46,7 @@ class _LoginPageState extends State<LoginPage> {
         // side: BorderSide(color: Colors.red),
       ),
       onPressed: () {
-        Fluttertoast.showToast(
-            msg: "LOGIN GAGAL, ",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.TOP,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        print("OK");
       },
       child: Text(
         "Login",

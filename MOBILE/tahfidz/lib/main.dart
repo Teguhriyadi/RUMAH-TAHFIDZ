@@ -7,7 +7,7 @@ void main() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreen(),
+      home: LoginPage(),
     ),
   );
 }
