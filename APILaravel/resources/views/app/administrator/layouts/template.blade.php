@@ -1,12 +1,3 @@
-@php
-    use Carbon\Carbon;
-    use App\Models\LastLogin;
-
-    $user = LastLogin::where('id_user', auth()->user()->id)->first();
-
-    $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +29,7 @@
                             <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Login {{ $dataTime->diffForHumans() }}</div>
+                            <div class="dropdown-title">Online</div>
                             <a href="features-profile.html" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>

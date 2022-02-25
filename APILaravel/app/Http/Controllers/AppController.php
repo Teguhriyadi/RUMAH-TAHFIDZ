@@ -13,7 +13,7 @@ class AppController extends Controller
 {
     public function layouts()
     {
-        return view("/app/administrator/layouts/template");
+        return view("app.administrator.layouts.template");
     }
 
     public function home()
