@@ -9,7 +9,7 @@
         <h1>Status Absen</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active">
-                <a href="{{ url('/app/admin/home') }}">Dashboard</a>
+                <a href="{{ url('/app/admin/home') }}">Home</a>
             </div>
             <div class="breadcrumb-item">Data Status Absen</div>
         </div>

@@ -121,8 +121,8 @@
                         namaCell.innerHTML = val['nama'];
                         emailCell.innerHTML = val['email'];
                         idRoleCell.innerHTML = val['id_role'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button>'
-                        aksiCell.innerHTML += '<button class="btn btn-primary" onclick="hapusData('+val['id']+')">Hapus</button>'
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML += '<button class="btn btn-primary" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
             }

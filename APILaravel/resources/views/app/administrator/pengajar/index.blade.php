@@ -175,8 +175,8 @@
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
                         alamatCell.innerHTML = val['alamat'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-telepon="'+val["telepon"]+'"><i class="fa fa-edit"></i> Edit </button>'
-                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')">Hapus</button>'
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-telepon="'+val["telepon"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
             }
