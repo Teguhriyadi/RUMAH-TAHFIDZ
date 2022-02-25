@@ -27,7 +27,7 @@ class AbsensiController extends Controller
                 'keterangan' => $a->keterangan,
                 'status_absen' => $a->getStatusAbsen->keterangan,
                 'pengajar' => $a->getPengajar->nama,
-                'tgl_absensi' => Carbon::createFromFormat('Y-m-d H:i:s', $a->created_at)->isoFormat('D MMMM Y')
+                'tgl_absensi' => Carbon::createFromFormat('Y-m-d H:i:s', $a->created_at)->isoFormat('D MMMM Y h:mm:s')
             ];
         }
 

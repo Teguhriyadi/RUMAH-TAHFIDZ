@@ -1,3 +1,12 @@
+@php
+    use Carbon\Carbon;
+    use App\Models\LastLogin;
+
+    $user = LastLogin::where('id_user', auth()->user()->id)->first();
+
+    $dataTime = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +35,10 @@
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ url('/template') }}/assets/img/avatar/avatar-1.png"
                             class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            <div class="dropdown-title">Login {{ $dataTime->diffForHumans() }}</div>
                             <a href="features-profile.html" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>

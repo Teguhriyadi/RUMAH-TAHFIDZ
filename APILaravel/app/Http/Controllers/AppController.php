@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LastLogin;
 use Illuminate\Http\Request;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Token;
 
@@ -17,6 +18,9 @@ class AppController extends Controller
 
     public function home()
     {
-        return view("app.administrator.v_home");
+        $data = [
+            'user_login' => LastLogin::where('id_user', Auth::user()->id)->latest()->limit(4)->get()
+        ];
+        return view("app.administrator.v_home", $data);
     }
 }
