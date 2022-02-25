@@ -74,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ), //Hero Section
             Positioned(
-              bottom: 0,
+              bottom: 30,
               // width: widhtBody / 1.25,
               // height: heightBody / 2.5,
               child: Container(
