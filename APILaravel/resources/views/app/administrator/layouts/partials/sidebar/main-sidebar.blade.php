@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active">
-                <a class="nav-link" href="{{ url('/app/admin/siswa') }}">
+                <a class="nav-link" href="{{ url('/app/admin/home') }}">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>

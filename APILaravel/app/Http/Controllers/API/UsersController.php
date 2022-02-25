@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RoleController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
+        $data = User::all();
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -40,16 +40,21 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            "nama" => "required",
+            "email" => "required",
+            "password" => "required",
+            "id_role" => "required"
         ]);
 
         if ($validasi->fails()) {
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Role::create([
-            
-            'keterangan' => $request->keterangan
+        $cek = User::create([
+            "nama" => $request->nama,
+            "email" => $request->email,
+            "password" => $request->password,
+            "id_role" => $request->id_role
         ]);
 
         if ($cek) {
@@ -75,7 +80,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $data = Role::findOrfail($id);
+        $data = User::findOrfail($id);
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -108,7 +113,7 @@ class RoleController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Role::where('id', $id)->update([
+        $cek = User::where('id', $id)->update([
             'keterangan' => $request->keterangan
         ]);
 
@@ -135,7 +140,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::findOrfail($id);
+        $role = User::findOrfail($id);
 
         if ($role) {
             $cek = $role->delete();

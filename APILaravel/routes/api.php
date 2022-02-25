@@ -5,6 +5,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SiswaController;
 use App\Http\Controllers\API\PengajarController;
 use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\StatusAbsenController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,3 +62,5 @@ Route::resource('absensi', AbsensiController::class);
 
 // Status Absen
 Route::resource('status_absen', StatusAbsenController::class);
+
+Route::resource('users', UsersController::class);
