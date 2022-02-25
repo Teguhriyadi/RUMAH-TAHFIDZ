@@ -1,7 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tahfidz/dashboard_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,10 +13,38 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Dio dio = new Dio();
   @override
   Widget build(BuildContext context) {
     TextEditingController _controllerTelepon = new TextEditingController();
     TextEditingController _controllerPassword = new TextEditingController();
+
+    Future<void> _loginProses() async {
+      try {
+        Response response;
+
+        response = await dio.post("http://rtq-freelance.my.id/api/login",
+            data: FormData.fromMap({
+              "no_hp": "${_controllerTelepon.text}",
+              "password": "${_controllerPassword.text}",
+            }));
+        print(response);
+        // if (response.data['status'] == true) {
+        //   setState(() {
+        //     _controllerTelepon.text = "";
+        //     _controllerPassword.text = "";
+        //   });
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+        // } else {
+        //   setState(() {
+        //     sendLoginFailed();
+        //   });
+        // }
+      } on DioError catch (e) {
+        print(e);
+      }
+    }
+
     final fieldTelepon = TextFormField(
       controller: _controllerTelepon,
       keyboardType: TextInputType.phone,
@@ -25,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     );
     final fieldPassword = TextFormField(
       controller: _controllerPassword,
+      obscureText: true,
       decoration: InputDecoration(
         hintText: "Password",
         prefixIcon: Icon(Icons.lock),
@@ -46,7 +77,11 @@ class _LoginPageState extends State<LoginPage> {
         // side: BorderSide(color: Colors.red),
       ),
       onPressed: () {
-        print("OK");
+        if (_controllerPassword.text == '' || _controllerTelepon.text == '') {
+          sendLoginFailed();
+        } else {
+          _loginProses();
+        }
       },
       child: Text(
         "Login",
@@ -64,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: EdgeInsets.all(40),
               child: Center(
                   child: Text(
-                "RUmah Tahfidx",
+                "Rumah Tahfidz",
               )),
             ),
             Container(
@@ -109,15 +144,16 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-    void sendLoginFailed() {
-      Fluttertoast.showToast(
-          msg: "LOGIN GAGAL, ",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
+  }
+
+  void sendLoginFailed() {
+    Fluttertoast.showToast(
+        msg: "LOGIN GAGAL",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }
