@@ -4,6 +4,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,25 +45,28 @@ Route::prefix("/app")->group(function () {
     Route::prefix("/admin")->group(function () {
         Route::group(["middleware" => ["otentikasi"]], function() {
 
+            Route::group(["middleware" => ["can:admin"]], function() {
+                Route::get("/status_absen", function() {
+                    return view("/app/administrator/status_absen/index");
+                });
+                Route::get("/users", [APIUserController::class, "index"]);
+                Route::get("/role", function() {
+                    return view("/app/administrator/role/index");
+                });
+                Route::get("/informasi_login", [AppController::class, "informasi_login"]);
+                Route::get("/siswa", function() {
+                    return view("/app/administrator/siswa/index");
+                });
+                Route::get("/pengajar", function() {
+                    return view("/app/administrator/pengajar/index");
+                });
+            });
+
+            Route::get("/profil", [ProfilController::class, "index"]);
             // Home
             Route::get("/home", [AppController::class, "home"]);
 
             // Users
-            Route::get("/users", [APIUserController::class, "index"]);
-            Route::get("/role", function() {
-                return view("/app/administrator/role/index");
-            });
-            Route::get("/siswa", function() {
-                return view("/app/administrator/siswa/index");
-            });
-            Route::get("/pengajar", function() {
-                return view("/app/administrator/pengajar/index");
-            });
-            Route::get("/status_absen", function() {
-                return view("/app/administrator/status_absen/index");
-            })->middleware("can:admin");
-            Route::get("/informasi_login", [AppController::class, "informasi_login"]);
-
         });
     });
 
