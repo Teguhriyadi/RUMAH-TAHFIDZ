@@ -38,7 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 color: Colors.white,
                 shape: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(35),
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Colors.transparent,
                   ),
                 ),
