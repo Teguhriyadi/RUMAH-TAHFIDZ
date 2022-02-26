@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,7 +53,7 @@ class SiswaController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Siswa::create([
+        $cek1 = Siswa::create([
             'id' => time(),
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -60,6 +61,16 @@ class SiswaController extends Controller
             'nama_ayah' => $request->nama_ayah,
             'nama_ibu' => $request->nama_ibu,
             'no_hp' => $request->no_hp
+        ]);
+
+        $cek = User::create([
+            "id" => time(),
+            "nama" => $request->nama,
+            "email" => "siswa@gmail.com",
+            "password" => bcrypt("password"),
+            "alamat" => $request->alamat,
+            "id_role" => 3,
+            "no_hp" => $request->no_hp
         ]);
 
         if ($cek) {
