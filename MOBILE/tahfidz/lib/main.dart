@@ -71,13 +71,16 @@ class _MyAppPageState extends State<MyAppPage> {
       }
     }
 
-    final fieldTelepon = TextFormField(
+    final fieldTelepon =
+       TextFormField(
+      
       controller: _controllerTelepon,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
+          
           hintText: "Telepon",
           prefixIcon: const Icon(Icons.phone),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
     );
     final fieldPassword = TextFormField(
       controller: _controllerPassword,
@@ -86,7 +89,7 @@ class _MyAppPageState extends State<MyAppPage> {
         hintText: "Password",
         prefixIcon: Icon(Icons.lock),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(50),
         ),
       ),
     );
@@ -99,7 +102,7 @@ class _MyAppPageState extends State<MyAppPage> {
       color: Colors.deepPurple,
       height: 50,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(50),
         // side: BorderSide(color: Colors.red),
       ),
       onPressed: () {
@@ -139,7 +142,7 @@ class _MyAppPageState extends State<MyAppPage> {
                       topLeft: Radius.circular(40))),
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
                 margin: EdgeInsets.only(top: 200, left: 50, right: 50),
                 width: double.infinity,
                 height: 400,
