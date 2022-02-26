@@ -49,12 +49,14 @@
                     <span>Absensi</span>
                 </a>
             </li>
+            @can("pengajar")
             <li class="{{ Request::segment(3)=='penilaian' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/penilaian') }}">
                     <i class="fa fa-book"></i>
                     <span>Penilaian</span>
                 </a>
             </li>
+            @endcan
             <li class="menu-header">Settings</li>
             <li class="{{ Request::segment(3)=='profile' ? 'active' : ''}}">
                 <a class="nav-link" href="{{ url('/app/admin/profil') }}">
