@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tahfidz/Iiem-menu.dart';
+import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 
 void main() {
@@ -22,6 +22,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        shadowColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 24, 0, 238),
+        actions: [
+          TextButton(
+              onPressed: () {
+                print('tes');
+              },
+              child: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ))
+        ],
+      ),
       body: SafeArea(
         child: Container(
           height: heightBody,
@@ -66,9 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: const [
                               ProfilePicture(
-                                sizeAvatar: 100,
-                                sizeIconAvatar: 40,
-                              ),
+                                  sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
                                 "Nandang Eka Prasetya",

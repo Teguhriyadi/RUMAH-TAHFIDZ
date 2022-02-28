@@ -10,6 +10,7 @@ import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
+  // SpUtil.clear();
   runApp(const MyApp());
 }
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: const MyAppPage(),
-      home: (SpUtil.getString('token') == null) ? const MyAppPage() : HomeScreen(),
+      home: (SpUtil.getBool('status') != true) ? const MyAppPage() : const HomeScreen(),
     );
   }
 }
@@ -49,14 +50,15 @@ class _MyAppPageState extends State<MyAppPage> {
               "password": "${_controllerPassword.text}",
             }));
         if (response.data['status'] == true) {
-          SpUtil.putString("token", response.data['status'].toString());
+          SpUtil.putBool("status", response.data['status']);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
+          // print(response.data['status']);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => DashboardScreen()));
-          Get.off(HomeScreen());
+          Get.off(const HomeScreen());
         } else {
           setState(() {
             sendLoginFailed();
