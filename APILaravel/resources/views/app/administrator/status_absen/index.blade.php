@@ -7,6 +7,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Status Absen</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">
+                <a href="{{ url('/app/admin/home') }}">Home</a>
+            </div>
+            <div class="breadcrumb-item">Data Status Absen</div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-6 col-sm-6 col-12">

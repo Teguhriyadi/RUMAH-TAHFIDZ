@@ -7,6 +7,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Data Siswa</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">
+                <a href="{{ url('/app/admin/home') }}">Home</a>
+            </div>
+            <div class="breadcrumb-item">Data Siswa</div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-6 col-12">
@@ -197,8 +203,8 @@
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
                         alamatCell.innerHTML = val['alamat'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-nama_ayah="'+val["nama_ayah"]+'" data-nama_ibu="'+val["nama_ibu"]+'" data-no_hp="'+val["no_hp"]+'"><i class="fa fa-edit"></i> Edit </button>'
-                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')">Hapus</button>'
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-nama_ayah="'+val["nama_ayah"]+'" data-nama_ibu="'+val["nama_ibu"]+'" data-no_hp="'+val["no_hp"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
             }

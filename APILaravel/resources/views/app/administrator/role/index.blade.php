@@ -6,7 +6,13 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Dashboard</h1>
+        <h1>Role</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">
+                <a href="{{ url('/app/admin/home') }}">Home</a>
+            </div>
+            <div class="breadcrumb-item">Data Role</div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -116,8 +122,8 @@
 
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['keterangan'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button>'
-                        aksiCell.innerHTML += '<button class="btn btn-primary" onclick="hapusData('+val['id']+')">Hapus</button>'
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
             }
