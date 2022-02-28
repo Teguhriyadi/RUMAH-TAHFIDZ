@@ -81,7 +81,13 @@
                         type: 'get',
                         success: function (response) {
                             if (response.status == true) {
-                                location.href = '{{ url("/app/login") }}'
+                                Swal.fire({
+                                    title: 'Selamat!',
+                                    text: 'Anda berhasil logout',
+                                    icon: 'success'
+                                }).then((result) => {
+                                    location.href = '{{ url("/app/login") }}'
+                                })
                             }
                         }
                     })
