@@ -36,10 +36,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                                <div class="invalid-feedback" id="error-email">
-                                    Please fill in your email
+                                <label for="no_hp">Telepon</label>
+                                <input id="no_hp" type="number" class="form-control" name="no_hp" tabindex="1" required autofocus>
+                                <div class="invalid-feedback" id="error-no_hp">
+                                    Please fill in your telepon
                                 </div>
                             </div>
 
@@ -89,25 +89,25 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 
 <script type="text/javascript">
     function validasi() {
-        let email = $('#email').val().trim();
+        let no_hp = $('#no_hp').val().trim();
         let password = $('#password').val().trim();
 
-        if (email == '' && password == '') {
-            $('#email, #password').addClass('is-invalid')
+        if (no_hp == '' && password == '') {
+            $('#no_hp, #password').addClass('is-invalid')
             $('.invalid-feedback').css('display', 'block')
-        } else if (email == '') {
-            $('#email').addClass('is-invalid')
-            $('#error-email').css('display', 'block')
+        } else if (no_hp == '') {
+            $('#no_hp').addClass('is-invalid')
+            $('#error-no_hp').css('display', 'block')
         } else if (password == '') {
             $('#password').addClass('is-invalid')
             $('#error-password').css('display', 'block')
         } else {
-            proses(email, password)
+            proses(no_hp, password)
         }
 
-        $('#email').change(function () {
+        $('#no_hp').change(function () {
             $(this).removeClass('is-invalid')
-            $('#error-email').css('display', 'none')
+            $('#error-no_hp').css('display', 'none')
             $("#error-login").css('display', 'none')
         })
 
@@ -118,12 +118,12 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
         })
     }
 
-    function proses(email, password) {
+    function proses(no_hp, password) {
         $.ajax({
             url: '{{ url("app/login") }}',
             type: "POST",
             data: {
-                email: email,
+                no_hp: no_hp,
                 password: password,
                 _token: '{{ csrf_token() }}'
             },

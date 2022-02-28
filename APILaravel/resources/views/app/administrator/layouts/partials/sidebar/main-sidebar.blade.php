@@ -35,12 +35,45 @@
                     <span>Pengajar</span>
                 </a>
             </li>
+            @can("admin")
             <li class="{{ Request::segment(3)=='status_absen' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/status_absen') }}">
                     <i class="fa fa-book"></i>
                     <span>Status Absen</span>
                 </a>
             </li>
+            @endcan
+            <li class="{{ Request::segment(3)=='penilaian' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/admin/penilaian') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Penilaian</span>
+                </a>
+            </li>
+            {{-- <li class="menu-header"> Web Admin </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Profil</span>
+                </a>
+            </li> --}}
             <li class="menu-header">Settings</li>
             <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">
