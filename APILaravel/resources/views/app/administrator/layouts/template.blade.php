@@ -81,7 +81,7 @@
                         type: 'get',
                         success: function (response) {
                             if (response.status == true) {
-                                location.href = '{{ url("/") }}'
+                                location.href = '{{ url("/app/login") }}'
                             }
                         }
                     })
