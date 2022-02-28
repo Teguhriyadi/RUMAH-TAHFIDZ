@@ -41,6 +41,31 @@
                     <span>Status Absen</span>
                 </a>
             </li>
+            {{-- <li class="menu-header"> Web Admin </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fa fa-bars"></i>
+                    <span>Profil</span>
+                </a>
+            </li> --}}
             <li class="menu-header">Settings</li>
             <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">
