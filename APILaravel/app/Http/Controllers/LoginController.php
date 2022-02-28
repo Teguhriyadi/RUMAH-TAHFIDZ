@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function loginProses(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'email' => 'required',
+            'no_hp' => 'required',
             'password' => 'required'
         ]);
 
@@ -27,7 +27,7 @@ class LoginController extends Controller
         }
 
         $validated = [
-            'email' => $request->email,
+            'no_hp' => $request->no_hp,
             'password' => $request->password
         ];
 
