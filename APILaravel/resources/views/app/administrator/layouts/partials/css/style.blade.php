@@ -11,6 +11,6 @@
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/style.css">
 <link rel="stylesheet" href="{{ url('/template') }}/assets/css/components.css">
-
-<link rel="stylesheet" href="{{ url('datatables') }}/dataTables.bootstrap4.min.css">
-
+<link rel="stylesheet" href="{{ url('/modules/datatables/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ url('/modules/datatables/css/datatables.min.css') }}">
+<link rel="stylesheet" href="{{ url('/modules/datatables/css/select.bootstrap4.min.css') }}">
