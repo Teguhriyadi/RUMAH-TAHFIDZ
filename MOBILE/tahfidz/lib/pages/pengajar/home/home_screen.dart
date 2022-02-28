@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tahfidz/Iiem-menu.dart';
+import 'package:tahfidz/components/profile_avatar.dart';
 
 void main() {
   runApp(GetMaterialApp(
@@ -64,14 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.all(20),
                           child: Column(
                             children: const [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundColor: Colors.green,
-                                child: CircleAvatar(
-                                  radius: 45,
-                                  backgroundImage:
-                                      AssetImage('assets/images/avatar.png'),
-                                ),
+                              ProfilePicture(
+                                sizeAvatar: 100,
+                                sizeIconAvatar: 40,
                               ),
                               SizedBox(height: 15),
                               Text(
