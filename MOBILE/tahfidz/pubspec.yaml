@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.1
   sp_util:
   google_fonts: ^2.3.1
+  sweetalert: any
+  flutter_sequence_animation:
   # progress_button: ^0.0.1
 
 dev_dependencies:

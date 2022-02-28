@@ -1,13 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
+import 'package:tahfidz/main.dart';
 
-void main() {
-  runApp(GetMaterialApp(
-    home: HomeScreen(),
-  ));
-}
+// void main() {
+//   runApp(GetMaterialApp(
+//     home: HomeScreen(),
+//   ));
+// }
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           TextButton(
               onPressed: () {
-                print('tes');
+                SpUtil.clear();
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => MyAppPage()));
+                Get.off(MyAppPage());
               },
               child: Icon(
                 Icons.logout,

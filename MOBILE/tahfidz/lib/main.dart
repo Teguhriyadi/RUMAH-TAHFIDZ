@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: const MyAppPage(),
-      home: (SpUtil.getBool('status') != true) ? const MyAppPage() : const HomeScreen(),
+      home: (SpUtil.getBool('status') != true)
+          ? const MyAppPage()
+          : const HomeScreen(),
     );
   }
 }
