@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tahfidz/home_screen.dart';
+import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
-          Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
         } else {
           setState(() {
             sendLoginFailed();

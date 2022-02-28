@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
+import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 // import 'package:tahfidz/login_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
   runApp(const MyApp());
 }
 
@@ -16,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const MyAppPage(),
+      // home: const MyAppPage(),
+      home: (SpUtil.getString('token') == null) ? const MyAppPage() : HomeScreen(),
     );
   }
 }
@@ -45,6 +49,7 @@ class _MyAppPageState extends State<MyAppPage> {
               "password": "${_controllerPassword.text}",
             }));
         if (response.data['status'] == true) {
+          SpUtil.putString("token", response.data['status'].toString());
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
