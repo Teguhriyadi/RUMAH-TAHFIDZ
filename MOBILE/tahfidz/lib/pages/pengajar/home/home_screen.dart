@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tahfidz/Iiem-menu.dart';
 
-void main() {
-  runApp(GetMaterialApp(
-    home: HomeScreen(),
-  ));
-}
+// void main() {
+//   runApp(GetMaterialApp(
+//     home: HomeScreen(),
+//   ));
+// }
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
