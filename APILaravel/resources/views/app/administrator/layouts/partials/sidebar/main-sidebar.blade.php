@@ -15,6 +15,7 @@
                 </a>
             </li>
             <li class="menu-header">Starter</li>
+            @can("admin")
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
                 <ul class="dropdown-menu">
@@ -35,7 +36,6 @@
                     <span>Pengajar</span>
                 </a>
             </li>
-            @can("admin")
             <li class="{{ Request::segment(3)=='status_absen' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/status_absen') }}">
                     <i class="fa fa-book"></i>
@@ -43,38 +43,26 @@
                 </a>
             </li>
             @endcan
+            <li class="{{ Request::segment(3)=='absensi' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app/admin/absensi') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Absensi</span>
+                </a>
+            </li>
             <li class="{{ Request::segment(3)=='penilaian' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/penilaian') }}">
                     <i class="fa fa-book"></i>
                     <span>Penilaian</span>
                 </a>
             </li>
-            {{-- <li class="menu-header"> Web Admin </li>
-            <li class="">
-                <a class="nav-link" href="">
-                    <i class="fa fa-bars"></i>
-                    <span>Kategori</span>
-                </a>
-            </li>
-            <li class="">
-                <a class="nav-link" href="">
-                    <i class="fa fa-bars"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-            <li class="">
-                <a class="nav-link" href="">
-                    <i class="fa fa-bars"></i>
-                    <span>Galeri</span>
-                </a>
-            </li>
-            <li class="">
-                <a class="nav-link" href="">
-                    <i class="fa fa-bars"></i>
+            <li class="menu-header">Settings</li>
+            <li class="{{ Request::segment(3)=='profile' ? 'active' : ''}}">
+                <a class="nav-link" href="{{ url('/app/admin/profil') }}">
+                    <i class="far fa-user"></i>
                     <span>Profil</span>
                 </a>
-            </li> --}}
-            <li class="menu-header">Settings</li>
+            </li>
+            @can("admin")
             <li class="{{ Request::segment(3)=='users' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app/admin/users/') }}">
                     <i class="far fa-user"></i>
@@ -93,6 +81,7 @@
                     <span>Informasi Login</span>
                 </a>
             </li>
+            @endcan
         </ul>
     </aside>
 </div>
