@@ -22,8 +22,7 @@
         <section class="section">
             <div class="container" style="margin-top: 100px">
                 <div class="row">
-                    <div
-                    class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h4>Login</h4>
@@ -58,6 +57,9 @@
                             </button>
                         </div>
                     </div>
+                </div>
+                <div class="mt-5 text-muted text-center">
+                    Lupa Password Anda ? <a href="{{ url('/app/forgot-password') }}">Lupa Password</a>
                 </div>
             </div>
         </div>
