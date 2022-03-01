@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Pengajar;
+use App\Models\User;
 
 class PengajarController extends Controller
 {
@@ -50,12 +51,22 @@ class PengajarController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Pengajar::create([
+        $cek1 = Pengajar::create([
             'id' => time(),
             "nama" => $request->nama,
             "jenis_kelamin" => $request->jenis_kelamin,
             "alamat" => $request->alamat,
             "telepon" => $request->telepon
+        ]);
+
+        $cek = User::create([
+            "id" => time(),
+            "nama" => $request->nama,
+            "email" => "data@gmail.com",
+            "password" => bcrypt("password"),
+            "alamat" => $request->alamat,
+            "id_role" => 2,
+            "no_hp" => $request->telepon
         ]);
 
         if ($cek) {
