@@ -62,6 +62,10 @@
                     <form method="post" class="needs-validation" novalidate="">
                         <div class="card-header">
                             <h4>Edit Profile</h4>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPassword">
+                                <i class="fa fa-edit"></i>
+                                <span>Edit Password</span>
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -120,5 +124,47 @@
         </div>
     </form>
 </section>
+
+<!-- Edit Password -->
+<div class="modal fade" tabindex="-1" role="dialog" id="editPassword">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fa fa-edit"></i>
+                    <span>Edit Password </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="POST">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <input type="hidden" id="id">
+                    <div class="form-group">
+                        <label for="password_lama"> Password Lama </label>
+                        <input type="password" class="form-control input-sm" name="password_lama" id="password_lama" placeholder="Masukkan Password Lama">
+                    </div>
+                    <div class="form-group">
+                        <label for="password_baru"> Password Baru </label>
+                        <input type="password" class="form-control input-sm" name="password_baru" id="password_baru" placeholder="Masukkan Password Baru">
+                    </div>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                        <span>Batal</span>
+                    </button>
+                    <button type="submit" class="btn btn-success btn-sm" id="btn-edit">
+                        <i class="fa fa-save"></i>
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
 
 @endsection
