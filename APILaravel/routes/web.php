@@ -68,6 +68,9 @@ Route::prefix("/app")->group(function () {
                 Route::get("/penilaian", function() {
                     echo "Hay";
                 });
+                Route::get("/absensi", function() {
+                    return view("/app/pengajar/absensi/index");
+                });
             });
 
             Route::get("/profil", [ProfilController::class, "index"]);
