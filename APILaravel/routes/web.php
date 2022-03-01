@@ -62,6 +62,12 @@ Route::prefix("/app")->group(function () {
                 });
             });
 
+            Route::group(["middleware" => ["can:pengajar"]], function() {
+                Route::get("/penilaian", function() {
+                    echo "Hay";
+                });
+            });
+
             Route::get("/profil", [ProfilController::class, "index"]);
             // Home
             Route::get("/home", [AppController::class, "home"]);
