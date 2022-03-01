@@ -28,6 +28,6 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("Mail From RTQ-Freelance")->view('view.name');
+        return $this->subject("Mail From RTQ-Freelance")->view('mail');
     }
 }
