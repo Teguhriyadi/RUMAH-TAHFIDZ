@@ -41,6 +41,7 @@ dependencies:
   sweetalert: any
   flutter_sequence_animation:
   lottie: ^1.2.2
+  animated_splash_screen: ^1.2.0
   # progress_button: ^0.0.1
 
 dev_dependencies:

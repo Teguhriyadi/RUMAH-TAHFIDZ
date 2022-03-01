@@ -42,8 +42,8 @@ Route::prefix("/app")->group(function () {
     Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "loginProses"]);
 
-    Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
-    Route::post("/forgot-password", [ForgotPasswordController::class, "store"]);
+    Route::get("/forgot_password", [ForgotPasswordController::class, "index"]);
+    Route::post("/forgot_password", [ForgotPasswordController::class, "store"]);
 
     Route::prefix("/admin")->group(function () {
         Route::group(["middleware" => ["otentikasi"]], function () {
