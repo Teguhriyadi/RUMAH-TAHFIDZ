@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="mt-5 text-muted text-center">
-                    Lupa Password Anda ? <a href="{{ url('/app/forgot-password') }}">Lupa Password</a>
+                    Lupa Password Anda ? <a href="{{ url('/app/forgot_password') }}">Lupa Password</a>
                 </div>
             </div>
         </div>

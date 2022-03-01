@@ -42,7 +42,7 @@ Route::prefix("/app")->group(function () {
     Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "loginProses"]);
 
-    Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
+    Route::get("/forgot_password", [ForgotPasswordController::class, "index"]);
 
     Route::prefix("/admin")->group(function () {
         Route::group(["middleware" => ["otentikasi"]], function() {
