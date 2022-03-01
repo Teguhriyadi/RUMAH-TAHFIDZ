@@ -43,29 +43,30 @@ Route::prefix("/app")->group(function () {
     Route::post("/login", [LoginController::class, "loginProses"]);
 
     Route::get("/forgot-password", [ForgotPasswordController::class, "index"]);
+    Route::post("/forgot-password", [ForgotPasswordController::class, "store"]);
 
     Route::prefix("/admin")->group(function () {
-        Route::group(["middleware" => ["otentikasi"]], function() {
+        Route::group(["middleware" => ["otentikasi"]], function () {
 
-            Route::group(["middleware" => ["can:admin"]], function() {
-                Route::get("/status_absen", function() {
+            Route::group(["middleware" => ["can:admin"]], function () {
+                Route::get("/status_absen", function () {
                     return view("/app/administrator/status_absen/index");
                 });
                 Route::get("/users", [APIUserController::class, "index"]);
-                Route::get("/role", function() {
+                Route::get("/role", function () {
                     return view("/app/administrator/role/index");
                 });
                 Route::get("/informasi_login", [AppController::class, "informasi_login"]);
-                Route::get("/siswa", function() {
+                Route::get("/siswa", function () {
                     return view("/app/administrator/siswa/index");
                 });
-                Route::get("/pengajar", function() {
+                Route::get("/pengajar", function () {
                     return view("/app/administrator/pengajar/index");
                 });
             });
 
-            Route::group(["middleware" => ["can:pengajar"]], function() {
-                Route::get("/penilaian", function() {
+            Route::group(["middleware" => ["can:pengajar"]], function () {
+                Route::get("/penilaian", function () {
                     echo "Hay";
                 });
             });
@@ -78,7 +79,7 @@ Route::prefix("/app")->group(function () {
         });
     });
 
-    Route::group(["middleware" => ["otentikasi"]], function() {
+    Route::group(["middleware" => ["otentikasi"]], function () {
         // Logout
         Route::get("/logout", [LoginController::class, "logout"]);
     });
