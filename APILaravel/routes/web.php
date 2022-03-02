@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
@@ -41,24 +42,35 @@ Route::prefix("/app")->group(function () {
     Route::get("/login", [LoginController::class, "login"])->middleware('guest');
     Route::post("/login", [LoginController::class, "loginProses"]);
 
+    Route::get("/forgot_password", [ForgotPasswordController::class, "index"]);
+    Route::post("/forgot_password", [ForgotPasswordController::class, "store"]);
 
     Route::prefix("/admin")->group(function () {
-        Route::group(["middleware" => ["otentikasi"]], function() {
+        Route::group(["middleware" => ["otentikasi"]], function () {
 
-            Route::group(["middleware" => ["can:admin"]], function() {
-                Route::get("/status_absen", function() {
+            Route::group(["middleware" => ["can:admin"]], function () {
+                Route::get("/status_absen", function () {
                     return view("/app/administrator/status_absen/index");
                 });
                 Route::get("/users", [APIUserController::class, "index"]);
-                Route::get("/role", function() {
+                Route::get("/role", function () {
                     return view("/app/administrator/role/index");
                 });
                 Route::get("/informasi_login", [AppController::class, "informasi_login"]);
-                Route::get("/siswa", function() {
+                Route::get("/siswa", function () {
                     return view("/app/administrator/siswa/index");
                 });
-                Route::get("/pengajar", function() {
+                Route::get("/pengajar", function () {
                     return view("/app/administrator/pengajar/index");
+                });
+            });
+
+            Route::group(["middleware" => ["can:pengajar"]], function () {
+                Route::get("/penilaian", function () {
+                    echo "Hay";
+                });
+                Route::get("/absensi", function() {
+                    return view("/app/pengajar/absensi/index");
                 });
             });
 
@@ -70,7 +82,7 @@ Route::prefix("/app")->group(function () {
         });
     });
 
-    Route::group(["middleware" => ["otentikasi"]], function() {
+    Route::group(["middleware" => ["otentikasi"]], function () {
         // Logout
         Route::get("/logout", [LoginController::class, "logout"]);
     });
