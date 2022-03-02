@@ -86,3 +86,86 @@
 //             )
 //           ],
 //         ),
+GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(
+            children: [
+              Text(
+                "Edit Profile",
+                style: GoogleFonts.poppins(
+                    fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Center(
+                child: Stack(
+                  children: [
+                    Positioned(
+                        bottom: 0,
+                        height: heightBody,
+                        width: widhtBody,
+                        child: Container(
+                          color: Colors.blue,
+                        )),
+                    Card(
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(199),
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      elevation: 10,
+                      color: Colors.white,
+                      child: ProfilePicture(
+                        sizeAvatar: 130,
+                        sizeBtn: 30,
+                        sizeIcon: 15,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              buildTextField(
+                  "Nama Lengkap", "Nandang Eka Prasetya", false, false),
+              buildTextField("Alamat ", "Lohbrner", false, false),
+              buildTextField("Jenis Kelamin", "Laki-Laki", false, false),
+              buildTextField(
+                  "Nomor Telepon", "Nandang Eka Prasetya", false, true),
+              buildTextField("Password", "********", true, false),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlineButton(
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {},
+                    child: Text("CANCEL",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2.2,
+                            color: Colors.black)),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    color: Colors.blue,
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      "SAVE",
+                      style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 2.2,
+                          color: Colors.white),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),

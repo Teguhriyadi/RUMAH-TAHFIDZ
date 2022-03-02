@@ -6,12 +6,14 @@ import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
 
+import '../../../model/profil.dart';
+
+// import 'package:sqflite/sqflite.dart';
 // void main() {
 //   runApp(GetMaterialApp(
 //     home: HomeScreen(),
 //   ));
 // }
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -20,10 +22,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Profil profil = new Profil();
+
   @override
   Widget build(BuildContext context) {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
+    Response? response;
+
+    print(response);
+
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.transparent,
@@ -88,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
-                                "Nandang Eka Prasetya",
+                                'as',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

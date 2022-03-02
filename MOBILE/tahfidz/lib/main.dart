@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
 import 'package:sp_util/sp_util.dart';
+import 'package:tahfidz/model/profil.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 // import 'package:tahfidz/login_screen.dart';
 
@@ -37,10 +38,12 @@ class MyAppPage extends StatefulWidget {
 
 class _MyAppPageState extends State<MyAppPage> {
   Dio dio = new Dio();
+
   @override
   Widget build(BuildContext context) {
     TextEditingController _controllerTelepon = new TextEditingController();
     TextEditingController _controllerPassword = new TextEditingController();
+    Profil profil = new Profil();
 
     Future<void> _loginProses() async {
       try {
@@ -52,14 +55,20 @@ class _MyAppPageState extends State<MyAppPage> {
               "password": "${_controllerPassword.text}",
             }));
         if (response.data['status'] == true) {
+          profil.setNama(response.data['data']['nama'].toString());
+          // print(response.data['data']['nama']);
+
+          // Profil profil = Profil(
+          //     nama: response.data['data']['nama'],
+          //     alamat: response.data['data']['alamat'],
+          //     telepon: response.data['data']['telepon'],
+          //     email: response.data['data']['email']);
+
           SpUtil.putBool("status", response.data['status']);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
-          // print(response.data['status']);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => DashboardScreen()));
           Get.off(const HomeScreen());
         } else {
           setState(() {
