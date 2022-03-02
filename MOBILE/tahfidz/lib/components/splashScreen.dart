@@ -52,7 +52,7 @@ class Splash extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: SplashScreen(),
       nextScreen: MyApp(),
-      duration: 3000,
+      duration: 2000,
     );
   }
 }
