@@ -1,69 +1,21 @@
-// To parse this JSON data, do
-//
-//     final profil = profilFromJson(jsonString);
-
-import 'dart:convert';
-
-Profil profilFromJson(Map<String, dynamic> str) => Profil.fromJson(str);
-
-String profilToJson(Profil data) => json.encode(data.toJson());
+import 'package:dio/dio.dart';
 
 class Profil {
-  Profil({
-    required this.message,
-    required this.status,
-    required this.accessToken,
-    required this.tokenType,
-    required this.data,
-  });
+  Dio dio = new Dio();
 
-  String message;
-  bool status;
-  String accessToken;
-  String tokenType;
-  Data data;
+  var data = new Map();
 
-  factory Profil.fromJson(Map<String, dynamic> json) => Profil(
-        message: json["message"],
-        status: json["status"],
-        accessToken: json["access_token"],
-        tokenType: json["token_type"],
-        data: Data.fromJson(json["data"]),
-      );
+  var telepon;
+  var nama;
+  var keterangan;
 
-  Map<String, dynamic> toJson() => {
-        "message": message,
-        "status": status,
-        "access_token": accessToken,
-        "token_type": tokenType,
-        "data": data.toJson(),
-      };
-}
+  void getData() async {
+    Response response;
 
-class Data {
-  Data({
-    required this.nama,
-    required this.alamat,
-    required this.email,
-    required this.noHp,
-  });
+    response =
+        await dio.get('https://rtq-freelance.my.id/api/info_profil/' + telepon);
 
-  String nama;
-  String alamat;
-  String email;
-  String noHp;
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        nama: json["nama"],
-        alamat: json["alamat"],
-        email: json["email"],
-        noHp: json["no_hp"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "nama": nama,
-        "alamat": alamat,
-        "email": email,
-        "no_hp": noHp,
-      };
+    nama = response.data['data']['nama'];
+    keterangan = response.data['data']['keterangan'];
+  }
 }

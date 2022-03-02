@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: const MyAppPage(),
       home: (SpUtil.getBool('status') != true)
           ? const MyAppPage()
           : const HomeScreen(),
@@ -61,17 +60,21 @@ class _MyAppPageState extends State<MyAppPage> {
               "no_hp": "${_controllerTelepon.text}",
               "password": "${_controllerPassword.text}",
             }));
+
         progressDialog.hide();
 
         if (response.data['status'] == true) {
-          var profil = profilFromJson(response.data);
+          // final profil = new Profil();
+          // profil.telepon = response.data['data']['no_hp'];
+
           SpUtil.putBool("status", response.data['status']);
-          SpUtil.putString("nama", profil.data.nama);
+          SpUtil.putString("nama", response.data['data']['nama']);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
-          // Get.off(const HomeScreen());
+
+          Get.off(const HomeScreen());
         } else if (response.data['status'] == false) {
           sendLoginFailed();
         }
