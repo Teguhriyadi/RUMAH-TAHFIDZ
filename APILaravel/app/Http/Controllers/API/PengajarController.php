@@ -128,14 +128,20 @@ class PengajarController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Pengajar::where('id', $id)->update([
+        $cek_pengajar = Pengajar::where('id', $id)->update([
             "nama" => $request->nama,
             "jenis_kelamin" => $request->jenis_kelamin,
             "alamat" => $request->alamat,
             "telepon" => $request->telepon
         ]);
 
-        if ($cek) {
+        $cek_user = User::where('no_hp', $request->oldNoHp)->update([
+            "nama" => $request->nama,
+            "alamat" => $request->alamat,
+            "no_hp" => $request->telepon
+        ]);
+
+        if ($cek_pengajar) {
             $data = [
                 'message' => 'Update Success!',
                 'status' => true
