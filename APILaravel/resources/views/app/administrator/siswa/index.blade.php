@@ -124,6 +124,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="id">
+                
                 <div class="form-group">
                     <label for="nama"> Nama </label>
                     <input type="text" name="nama" id="nm" class="form-control input-sm" placeholder="Masukkan Nama">
@@ -228,6 +229,7 @@
             $("#ayah").val(nama_ayah)
             $("#ibu").val(nama_ibu)
             $("#hp").val(no_hp)
+            //$("#oldNoHp").val(no_hp)
         });
 
         $("#btn-tambah").on('click', function() {
@@ -284,6 +286,7 @@
             let nama_ayah = $("#ayah").val().trim();
             let nama_ibu = $("#ibu").val().trim();
             let no_hp = $("#hp").val().trim();
+            //let old_no_hp = $("#oldNoHp").val().trim();
 
             if (nama == "", jenis_kelamin == "", alamat == "", nama_ayah == "", nama_ibu == "", no_hp == "") {
                 Swal.fire({
@@ -295,7 +298,7 @@
                 $.ajax({
                     url : "{{ url('/api/siswa/') }}/" + id,
                     type : "POST",
-                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, _token: "{{ csrf_token() }}", _method : "PUT" },
+                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, old_no_hp : old_no_hp , _token: "{{ csrf_token() }}", _method : "PUT" },
                     success : function(response) {
                         console.log(response)
                         if (response.status == true) {
@@ -306,6 +309,7 @@
                             $("#ayah").val()
                             $("#ibu").val()
                             $("#hp").val()
+                            $("#oldNoHp").val()
                             tampilData()
                             $("#modalEdit").modal('hide')
                             Swal.fire({
