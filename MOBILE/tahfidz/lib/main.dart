@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 // import 'package:tahfidz/login_screen.dart';
@@ -71,13 +73,10 @@ class _MyAppPageState extends State<MyAppPage> {
       }
     }
 
-    final fieldTelepon =
-       TextFormField(
-      
+    final fieldTelepon = TextFormField(
       controller: _controllerTelepon,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-          
           hintText: "Telepon",
           prefixIcon: const Icon(Icons.phone),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
@@ -119,45 +118,63 @@ class _MyAppPageState extends State<MyAppPage> {
       ),
     );
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      // backgroundColor: Colors.deepPurple,
       body: SingleChildScrollView(
         child: Stack(
+          alignment: Alignment.center,
           children: [
-            Container(
-              // background: Color.fromARGB(255, 240, 238, 243),
-              padding: EdgeInsets.all(40),
-              child: Center(
-                  child: Text(
-                "Rumah Tahfidz",
-              )),
+            Positioned(
+              // top: 0,
+              child: Container(
+                margin: EdgeInsets.only(top: 400),
+                width: double.infinity,
+                height: 450,
+                decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(40),
+                        topLeft: Radius.circular(40))),
+              ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 400),
-              width: double.infinity,
-              height: 450,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40))),
+            Positioned(
+              top: 50,
+              child: Container(
+                // color: Color.fromARGB(255, 240, 238, 243),
+                padding: EdgeInsets.all(40),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Lottie.asset('assets/splash.json'),
+                      width: 150,
+                      height: 150,
+                    ),
+                    Text(
+                      "Rumah Tahfidz ",
+                      style: GoogleFonts.poppins(
+                          fontSize: 24, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
             ),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+            Positioned(
+              top: 100,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 1, vertical: 5),
                 margin: EdgeInsets.only(top: 200, left: 50, right: 50),
                 width: double.infinity,
-                height: 400,
+                height: 380,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black38,
-                          spreadRadius: 0.1,
-                          blurRadius: 5)
-                    ]),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black38, spreadRadius: 0.1, blurRadius: 5)
+                  ],
+                ),
                 child: Form(
                   child: ListView(
-                    padding: EdgeInsets.all(30),
+                    padding: EdgeInsets.all(20),
                     children: [
                       loginText,
                       SizedBox(height: 35),
@@ -168,7 +185,9 @@ class _MyAppPageState extends State<MyAppPage> {
                       loginButton,
                     ],
                   ),
-                ))
+                ),
+              ),
+            ),
           ],
         ),
       ),

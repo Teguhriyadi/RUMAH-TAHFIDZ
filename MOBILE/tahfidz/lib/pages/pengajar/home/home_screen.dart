@@ -6,11 +6,11 @@ import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
 
-// void main() {
-//   runApp(GetMaterialApp(
-//     home: HomeScreen(),
-//   ));
-// }
+void main() {
+  runApp(GetMaterialApp(
+    home: HomeScreen(),
+  ));
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final widhtBody = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        shadowColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
+        elevation: 0,
         backgroundColor: Color.fromARGB(255, 24, 0, 238),
         actions: [
           TextButton(
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
+        bottom: true,
         child: Container(
           height: heightBody,
           width: widhtBody,
@@ -49,11 +51,22 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                height: 400,
+                height: 350,
                 width: widhtBody,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        width: widhtBody,
+                        height: 200,
+                        color: Colors.black,
+                        child: Row(
+                          children: [],
+                        ),
+                      ),
+                    ),
                     Positioned(
                       top: 0,
                       height: 252,
@@ -69,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 60,
+                      top: 30,
                       width: widhtBody / 1.25,
                       height: heightBody / 2.7,
                       child: Card(
@@ -113,8 +126,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 color: Colors.white,
                 child: Wrap(
-                  spacing: 17,
-                  runSpacing: 17,
+                  spacing: 10,
+                  runSpacing: 10,
                   children: [
                     ItemMenu(
                         title: 'Expend', icon: Icons.home, color: 0xffFED525),
