@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sp_util/sp_util.dart';
+import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
+
+import 'model/profil.dart';
 // import 'package:tahfidz/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
-  // SpUtil.clear();
   runApp(const MyApp());
 }
 
@@ -22,7 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: const MyAppPage(),
       home: (SpUtil.getBool('status') != true)
           ? const MyAppPage()
           : const HomeScreen(),
@@ -48,25 +52,32 @@ class _MyAppPageState extends State<MyAppPage> {
       try {
         Response response;
 
+        ProgressDialog? progressDialog = ProgressDialog(context);
+        progressDialog.style(message: "Harap Tunggu...");
+        progressDialog.show();
+
         response = await dio.post("http://rtq-freelance.my.id/api/login",
             data: FormData.fromMap({
               "no_hp": "${_controllerTelepon.text}",
               "password": "${_controllerPassword.text}",
             }));
+
+        progressDialog.hide();
+
         if (response.data['status'] == true) {
+          // final profil = new Profil();
+          // profil.telepon = response.data['data']['no_hp'];
+
           SpUtil.putBool("status", response.data['status']);
+          SpUtil.putString("nama", response.data['data']['nama']);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
-          // print(response.data['status']);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => DashboardScreen()));
+
           Get.off(const HomeScreen());
-        } else {
-          setState(() {
-            sendLoginFailed();
-          });
+        } else if (response.data['status'] == false) {
+          sendLoginFailed();
         }
       } on DioError catch (e) {
         print(e);
@@ -98,7 +109,7 @@ class _MyAppPageState extends State<MyAppPage> {
       style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
     ));
     final loginButton = FlatButton(
-      color: Colors.deepPurple,
+      color: mainColor,
       height: 50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
@@ -130,7 +141,7 @@ class _MyAppPageState extends State<MyAppPage> {
                 width: double.infinity,
                 height: 450,
                 decoration: BoxDecoration(
-                    color: Colors.deepPurple,
+                    color: mainColor,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(40),
                         topLeft: Radius.circular(40))),

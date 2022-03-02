@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/components/item-menu.dart';
+import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
+import 'package:tahfidz/components/my_colors.dart';
 
 void main() {
   runApp(GetMaterialApp(
@@ -20,26 +22,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final String? userName = SpUtil.getString("nama", defValue: "");
+
   @override
   Widget build(BuildContext context) {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         // shadowColor: Colors.transparent,
         elevation: 0,
-        backgroundColor: Color.fromARGB(255, 24, 0, 238),
+        backgroundColor: mainColor,
         actions: [
-          TextButton(
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            child: TextButton(
               onPressed: () {
                 SpUtil.clear();
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => MyAppPage()));
                 Get.off(MyAppPage());
               },
               child: Icon(
-                Icons.logout,
+                Icons.settings,
                 color: Colors.white,
-              ))
+                size: 32,
+              ),
+            ),
+          ),
         ],
       ),
       body: SafeArea(
@@ -61,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Container(
                         width: widhtBody,
                         height: 200,
-                        color: Colors.black,
+                        // color: Colors.black,
                         child: Row(
                           children: [],
                         ),
@@ -73,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: widhtBody,
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 24, 0, 238),
+                          color: Color.fromRGBO(0, 45, 245, 100),
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(50),
                             bottomRight: Radius.circular(50),
@@ -96,12 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
-                            children: const [
+                            children: [
                               ProfilePicture(
                                   sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
-                                "Nandang Eka Prasetya",
+                                userName!,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
