@@ -34,6 +34,7 @@ class AuthController extends Controller
                 'alamat' => Auth::user()->alamat,
                 'email' => Auth::user()->email,
                 'no_hp' => Auth::user()->no_hp,
+                'keterangan' => Auth::user()->getRole->keterangan,
             ];
 
             $user = User::where('no_hp', $request->no_hp)->first();
