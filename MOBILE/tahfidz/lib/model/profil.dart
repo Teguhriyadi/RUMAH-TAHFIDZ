@@ -1,46 +1,69 @@
+// To parse this JSON data, do
+//
+//     final profil = profilFromJson(jsonString);
+
+import 'dart:convert';
+
+Profil profilFromJson(Map<String, dynamic> str) => Profil.fromJson(str);
+
+String profilToJson(Profil data) => json.encode(data.toJson());
+
 class Profil {
-  // final String nama;
-  // final String alamat;
-  // final String telepon;
-  // final String email;
-  String? nama;
-  String? alamat;
-  String? telepon;
-  String? email;
+  Profil({
+    required this.message,
+    required this.status,
+    required this.accessToken,
+    required this.tokenType,
+    required this.data,
+  });
 
-  void setNama(String nama) {
-    this.nama = nama;
-  }
+  String message;
+  bool status;
+  String accessToken;
+  String tokenType;
+  Data data;
 
-  String? getNama() {
-    return this.nama;
-  }
+  factory Profil.fromJson(Map<String, dynamic> json) => Profil(
+        message: json["message"],
+        status: json["status"],
+        accessToken: json["access_token"],
+        tokenType: json["token_type"],
+        data: Data.fromJson(json["data"]),
+      );
 
-  // Profil({
-  //   required this.nama,
-  //   required this.alamat,
-  //   required this.telepon,
-  //   required this.email,
-  // });
+  Map<String, dynamic> toJson() => {
+        "message": message,
+        "status": status,
+        "access_token": accessToken,
+        "token_type": tokenType,
+        "data": data.toJson(),
+      };
+}
 
-  // factory Profil.fromMap(Map<String, dynamic> map) {
-  //   return Profil(
-  //       nama: map['nama'],
-  //       alamat: map['alamat'],
-  //       telepon: map['telepon'],
-  //       email: map['email']);
-  // }
+class Data {
+  Data({
+    required this.nama,
+    required this.alamat,
+    required this.email,
+    required this.noHp,
+  });
 
-  // Map<String, dynamic> toMap() {
-  //   Map<String, dynamic> map = Map<String, dynamic>();
-  //   map['nama'] = this.nama;
-  //   map['alamat'] = this.alamat;
-  //   map['telepon'] = this.telepon;
-  //   map['email'] = this.email;
-  //   return map;
-  // }
+  String nama;
+  String alamat;
+  String email;
+  String noHp;
 
-  // String getNama() {
-  //   return this.nama;
-  // }
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        nama: json["nama"],
+        alamat: json["alamat"],
+        email: json["email"],
+        noHp: json["no_hp"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "nama": nama,
+        "alamat": alamat,
+        "email": email,
+        "no_hp": noHp,
+      };
 }

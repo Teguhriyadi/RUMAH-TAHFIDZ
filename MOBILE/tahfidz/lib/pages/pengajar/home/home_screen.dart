@@ -22,15 +22,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Profil profil = new Profil();
-
   @override
   Widget build(BuildContext context) {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
-    Response? response;
-
-    print(response);
 
     return Scaffold(
       appBar: AppBar(
@@ -96,11 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
-                                'as',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                SpUtil.getString("nama", defValue: ''),
                               ),
                               SizedBox(height: 10),
                               Text(

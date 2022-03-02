@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/model/profil.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
@@ -11,7 +14,6 @@ import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
-  // SpUtil.clear();
   runApp(const MyApp());
 }
 
@@ -43,50 +45,45 @@ class _MyAppPageState extends State<MyAppPage> {
   Widget build(BuildContext context) {
     TextEditingController _controllerTelepon = new TextEditingController();
     TextEditingController _controllerPassword = new TextEditingController();
-    Profil profil = new Profil();
 
     Future<void> _loginProses() async {
       try {
         Response response;
+
+        ProgressDialog? progressDialog = ProgressDialog(context);
+        progressDialog.style(message: "Harap Tunggu...");
+        progressDialog.show();
 
         response = await dio.post("http://rtq-freelance.my.id/api/login",
             data: FormData.fromMap({
               "no_hp": "${_controllerTelepon.text}",
               "password": "${_controllerPassword.text}",
             }));
-        if (response.data['status'] == true) {
-          profil.setNama(response.data['data']['nama'].toString());
-          // print(response.data['data']['nama']);
 
-          // Profil profil = Profil(
-          //     nama: response.data['data']['nama'],
-          //     alamat: response.data['data']['alamat'],
-          //     telepon: response.data['data']['telepon'],
-          //     email: response.data['data']['email']);
+        progressDialog.hide();
+
+        if (response.data['status'] == true) {
+          var profil = profilFromJson(response.data);
 
           SpUtil.putBool("status", response.data['status']);
+          SpUtil.putString("nama", profil.data.nama);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
           });
-          Get.off(const HomeScreen());
-        } else {
-          setState(() {
-            sendLoginFailed();
-          });
+          // Get.off(const HomeScreen());
+        } else if (response.data['status'] == false) {
+          sendLoginFailed();
         }
       } on DioError catch (e) {
         print(e);
       }
     }
 
-    final fieldTelepon =
-       TextFormField(
-      
+    final fieldTelepon = TextFormField(
       controller: _controllerTelepon,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-          
           hintText: "Telepon",
           prefixIcon: const Icon(Icons.phone),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
