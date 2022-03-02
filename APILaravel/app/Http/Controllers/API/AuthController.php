@@ -47,7 +47,7 @@ class AuthController extends Controller
                 'data' => $data
             ], 200);
         } else {
-            return response()->json(['message' => 'Login Failed!'], 400);
+            return response()->json(['status' => false, 'message' => 'Login Failed!'], 200);
         }
     }
 
