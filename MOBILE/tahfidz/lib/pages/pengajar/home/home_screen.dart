@@ -6,8 +6,12 @@ import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
+<<<<<<< HEAD
 // ignore: duplicate_import
 import 'package:tahfidz/components/my_colors.dart';
+=======
+import 'package:tahfidz/model/profil.dart';
+>>>>>>> 52ee75f8cc07fcf99facb96d4a38bcb79b42cec3
 
 void main() {
   runApp(GetMaterialApp(
@@ -23,10 +27,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final String? userName = SpUtil.getString("nama", defValue: "");
+
   @override
   Widget build(BuildContext context) {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         // shadowColor: Colors.transparent,
@@ -37,9 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.only(right: 20),
             child: TextButton(
               onPressed: () {
+<<<<<<< HEAD
                 // SpUtil.clear();
                 // // Navigator.push(context, MaterialPageRoute(builder: (context) => MyAppPage()));
                 // Get.off(MyAppPage());
+=======
+                SpUtil.clear();
+                Get.off(MyAppPage());
+>>>>>>> 52ee75f8cc07fcf99facb96d4a38bcb79b42cec3
               },
               child: Icon(
                 Icons.settings,
@@ -104,12 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
-                            children: const [
+                            children: [
                               ProfilePicture(
                                   sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
-                                "Nandang Eka Prasetya",
+                                userName!,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

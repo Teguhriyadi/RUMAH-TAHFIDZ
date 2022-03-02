@@ -41,6 +41,8 @@ class User extends Authenticatable
     //     'email_verified_at' => 'datetime',
     // ];
 
+    public $telepon;
+
     public function getToken()
     {
         return $this->hasOne(Token::class, 'tokenable_id', 'id');
@@ -49,5 +51,15 @@ class User extends Authenticatable
     public function getRole()
     {
         return $this->belongsTo("App\Models\Role", "id_role", "id");
+    }
+
+    public function getHakAkses()
+    {
+        // return $this->telepon;
+        // if ($this->telepon == 2) {
+        //     return $this->hasOne("App\Models\Pengajar", "no_hp", "telepon");
+        // } else if ($this->telepon == 3) {
+        //     return $this->belongsTo("App\Models\Siswa", "no_hp", "no_hp");
+        // }
     }
 }
