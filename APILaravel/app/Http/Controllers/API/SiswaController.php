@@ -121,6 +121,12 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cek = $request->old_no_hp;
+
+        echo $cek;
+
+        die();
+
         $validasi = Validator::make($request->all(), [
             'nama' => 'required',
             'jenis_kelamin' => 'required',
@@ -134,13 +140,17 @@ class SiswaController extends Controller
             return response()->json($validasi->errors(), 400);
         }
 
-        $cek = Siswa::where('id', $id)->update([
+        $cek_siswa = Siswa::where('id', $id)->update([
             "nama" => $request->nama,
             "jenis_kelamin" => $request->jenis_kelamin,
             "alamat" => $request->alamat,
             "nama_ayah" => $request->nama_ayah,
             "nama_ibu" => $request->nama_ibu,
             "no_hp" => $request->no_hp,
+        ]);
+
+        $cek = User::where("no_hp", $request->old_no_hp)->update([
+
         ]);
 
         if ($cek) {
