@@ -6,6 +6,7 @@ import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sp_util/sp_util.dart';
+import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 // import 'package:tahfidz/login_screen.dart';
 
@@ -98,7 +99,7 @@ class _MyAppPageState extends State<MyAppPage> {
       style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
     ));
     final loginButton = FlatButton(
-      color: Colors.deepPurple,
+      color: mainColor,
       height: 50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
@@ -130,7 +131,7 @@ class _MyAppPageState extends State<MyAppPage> {
                 width: double.infinity,
                 height: 450,
                 decoration: BoxDecoration(
-                    color: Colors.deepPurple,
+                    color: mainColor,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(40),
                         topLeft: Radius.circular(40))),
