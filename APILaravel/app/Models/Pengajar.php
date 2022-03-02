@@ -12,4 +12,9 @@ class Pengajar extends Model
     protected $table = "tb_pengajar";
 
     protected $guarded = [''];
+
+    public function getUser()
+    {
+        return $this->hasOne("App\Models\User", "no_hp", "telepon");
+    }
 }
