@@ -65,3 +65,5 @@ Route::resource('absensi', AbsensiController::class);
 Route::resource('status_absen', StatusAbsenController::class);
 
 Route::resource('users', UsersController::class);
+
+Route::get('info_profil/{no_hp}', [ProfilController::class, 'info_profil']);

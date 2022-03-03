@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/pages/pengajar/profile/profile_screen.dart';
 
 class ProfilePicture extends StatelessWidget {
@@ -39,7 +40,7 @@ class ProfilePicture extends StatelessWidget {
                     backgroundColor: Color.fromARGB(255, 15, 75, 255),
                   ),
                   onPressed: () {
-                    Get.to(ProfileScreen());
+                    Get.to(ProfileScreen(telepon: SpUtil.getString('no_hp')!));
                   },
                   child: Icon(
                     Icons.edit,

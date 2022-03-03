@@ -9,13 +9,12 @@ class Profil {
   var nama;
   var keterangan;
 
-  void getData() async {
+  Future<String> getData() async {
     Response response;
 
     response =
         await dio.get('https://rtq-freelance.my.id/api/info_profil/' + telepon);
 
-    nama = response.data['data']['nama'];
-    keterangan = response.data['data']['keterangan'];
+    return response.data;
   }
 }

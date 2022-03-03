@@ -43,7 +43,6 @@ class ProfilController extends Controller
                 "alamat" => $data->alamat,
                 "keterangan" => $data->getRole->keterangan,
             ];
-
         }
 
 

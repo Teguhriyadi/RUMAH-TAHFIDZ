@@ -1,5 +1,5 @@
 // ignore_for_file: deprecated_member_use
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,14 +8,16 @@ import 'package:tahfidz/components/profile_avatar.dart';
 
 import 'package:tahfidz/model/profil.dart';
 
-void main(List<String> args) {
-  runApp(MaterialApp(
-    home: ProfileScreen(),
-  ));
-}
+// void main(List<String> args) {
+//   runApp(MaterialApp(
+//     home: ProfileScreen(),
+//   ));
+// }
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final String telepon;
+  ProfileScreen({required this.telepon});
+  // const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -23,13 +25,31 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool showPassword = false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
+  getUser() async {
+    // Dio dio = new Dio();
+
+    // var coba = dio
+    //     .get('https://rtq-freelance.my.id/api/info_profil/' + widget.telepon);
+
+    print(widget.telepon);
+  }
 
   @override
   Widget build(BuildContext context) {
     TextEditingController _controllerTelepon = new TextEditingController();
     TextEditingController _controllerNama = new TextEditingController();
+
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -41,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_new),
             onPressed: () {
-              print("ok");
+              Get.back();
             }),
       ),
       backgroundColor: Colors.white,
@@ -101,7 +121,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Colors.black)),
                       ),
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(_controllerTelepon.text);
+                          print(_controllerNama.text);
+                        },
                         color: Colors.blue,
                         padding: EdgeInsets.symmetric(horizontal: 50),
                         elevation: 2,

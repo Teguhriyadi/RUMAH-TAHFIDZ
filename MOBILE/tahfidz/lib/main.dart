@@ -64,13 +64,10 @@ class _MyAppPageState extends State<MyAppPage> {
         progressDialog.hide();
 
         if (response.data['status'] == true) {
-          // final profil = new Profil();
-          // profil.telepon = response.data['data']['no_hp'];
-
           SpUtil.putBool("status", response.data['status']);
           SpUtil.putString("nama", response.data['data']['nama']);
           SpUtil.putString("keterangan", response.data['data']['keterangan']);
-
+          SpUtil.putString("no_hp", response.data['data']['no_hp']);
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";
