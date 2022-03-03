@@ -1,10 +1,14 @@
 // ignore_for_file: deprecated_member_use
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/retry.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:tahfidz/components/constants.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:tahfidz/model/profil.dart';
 
@@ -26,6 +30,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool showPassword = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController _controllerTelepon = new TextEditingController();
+  TextEditingController _controllerNama = new TextEditingController();
 
   @override
   void initState() {
@@ -34,19 +40,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getUser() async {
-    // Dio dio = new Dio();
+    final client = RetryClient(http.Client());
+    try {
+      print("Ok");
+      ProgressDialog progressDialog = ProgressDialog(context);
+      var response = await client.get(Uri.parse(
+          // 'http://rtq-freelance.my.id/api/info_profil/' + widget.telepon));
+          'http://rtq-freelance.my.id/api/info_profil/000'));
+      print(response.body);
+      var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
-    // var coba = dio
-    //     .get('https://rtq-freelance.my.id/api/info_profil/' + widget.telepon);
-
-    print(widget.telepon);
+      _controllerNama.text = jsonResponse['data']['nama'];
+      _controllerTelepon.text = jsonResponse['data']['no_hp'];
+    } finally {
+      client.close();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controllerTelepon = new TextEditingController();
-    TextEditingController _controllerNama = new TextEditingController();
-
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
 
@@ -100,10 +112,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.all(20),
               child: ListView(
                 children: [
-                  buildTextField(
-                      "Nama Lengkap", "Nama", false, false, _controllerNama),
-                  buildTextField(
-                      "Telepon", "Telepon", false, true, _controllerTelepon),
+                  buildTextField("Nama Lengkap", false, false, _controllerNama),
+                  buildTextField("Telepon", false, true, _controllerTelepon),
                   // buildTextField("Nama Lengkap", "Nama", false, false),
                   // buildTextFieldo("Nama Lengkap", "Nama", false, false),
                   Row(
@@ -149,8 +159,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder,
-      bool isPasswordTextField, bool type, dynamic controller) {
+  Widget buildTextField(String labelText, bool isPasswordTextField, bool type,
+      dynamic controller) {
     final typekey = TextInputType.number;
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
@@ -176,7 +186,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
