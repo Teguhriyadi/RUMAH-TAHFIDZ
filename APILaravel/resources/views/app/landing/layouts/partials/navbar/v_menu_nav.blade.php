@@ -7,8 +7,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
+            <a href="{{ url('/home') }}" class="nav-item nav-link active">Home</a>
+            <a href="{{ url('/tentang_kami') }}" class="nav-item nav-link">Tentang Kami</a>
             <a href="service.html" class="nav-item nav-link">Services</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -21,7 +21,7 @@
                     <a href="404.html" class="dropdown-item">404 Page</a>
                 </div>
             </div>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
+            <a href="{{ url('/kontak') }}" class="nav-item nav-link">Kontak</a>
         </div>
         <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+012 345 6789</h4>
     </div>

@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingPageController::class, "home"]);
 Route::get("/layouts", [LandingPageController::class, "layouts"]);
 Route::get("/home", [LandingPageController::class, "home"]);
+Route::get("/kontak", [LandingPageController::class, "kontak"]);
 
 // Route::get("/layouts", [AppController::class, "layouts"]);
 // Route::get("/home", [AppController::class, "home"]);
