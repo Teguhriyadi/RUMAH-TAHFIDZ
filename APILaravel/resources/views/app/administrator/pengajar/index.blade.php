@@ -110,6 +110,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="id">
+                <input type="hidden" id="oldNoHp">
                 <div class="form-group">
                     <label for="nama"> Nama </label>
                     <input type="text" name="nama" id="nm" class="form-control input-sm" placeholder="Masukkan Nama">
@@ -196,6 +197,7 @@
             $("#jk").val(jenis_kelamin)
             $("#address").val(alamat)
             $("#tlp").val(telepon)
+            $("#oldNoHp").val(telepon)
         });
 
         $("#btn-tambah").on('click', function() {
@@ -246,8 +248,9 @@
             let jenis_kelamin = $("#jk").val().trim();
             let alamat = $("#address").val().trim();
             let telepon = $("#tlp").val().trim();
+            let oldNoHp = $("#oldNoHp").val().trim();
 
-            if (nama == "", jenis_kelamin == "", alamat == "", telepon == "") {
+            if (nama == "" || jenis_kelamin == "" || alamat == "" || telepon == "") {
                 Swal.fire({
                     title : "Oops",
                     text : "Data tidak boleh kosong",
@@ -257,7 +260,7 @@
                 $.ajax({
                     url : "{{ url('/api/pengajar/') }}/" + id,
                     type : "POST",
-                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, telepon : telepon, _token: "{{ csrf_token() }}", _method : "PUT" },
+                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, telepon : telepon, oldNoHp : oldNoHp , _token: "{{ csrf_token() }}", _method : "PUT" },
                     success : function(response) {
                         console.log(response)
                         if (response.status == true) {
@@ -266,6 +269,7 @@
                             $("#jk").val()
                             $("#address").val()
                             $("#tlp").val()
+                            $("#oldNoHp").val()
                             tampilData()
                             $("#modalEdit").modal('hide')
                             Swal.fire({
