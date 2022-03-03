@@ -6,6 +6,8 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PesanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +21,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [LandingPageController::class, "home"]);
+Route::get("/layouts", [LandingPageController::class, "layouts"]);
+Route::get("/home", [LandingPageController::class, "home"]);
+Route::get("/tentang_kami", [LandingPageController::class, "tentang_kami"]);
+Route::get("/kontak", [LandingPageController::class, "kontak"]);
+Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 // Route::get("/layouts", [AppController::class, "layouts"]);
 // Route::get("/home", [AppController::class, "home"]);
 
@@ -63,6 +67,8 @@ Route::prefix("/app")->group(function () {
                 Route::get("/pengajar", function () {
                     return view("/app/administrator/pengajar/index");
                 });
+
+                Route::get("/pesan", [PesanController::class, "index"]);
             });
 
             Route::group(["middleware" => ["can:pengajar"]], function () {

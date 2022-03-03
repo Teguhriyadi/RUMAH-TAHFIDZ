@@ -121,12 +121,6 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cek = $request->old_no_hp;
-
-        echo $cek;
-
-        die();
-
         $validasi = Validator::make($request->all(), [
             'nama' => 'required',
             'jenis_kelamin' => 'required',
@@ -149,8 +143,10 @@ class SiswaController extends Controller
             "no_hp" => $request->no_hp,
         ]);
 
-        $cek = User::where("no_hp", $request->old_no_hp)->update([
-
+        $cek = User::where("no_hp", $request->oldNoHp)->update([
+            "nama" => $request->nama,
+            "alamat" => $request->alamat,
+            "no_hp" => $request->oldNoHp
         ]);
 
         if ($cek) {

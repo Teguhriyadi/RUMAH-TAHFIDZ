@@ -27,11 +27,11 @@
                         <table class="table table-bordered table-hover" id="tampilData">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th class="text-center">No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Aksi</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,6 +81,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="gambar"> Gambar </label>
+                    <input type="file" id="gambar" class="form-control">
+                </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -122,7 +126,7 @@
                         emailCell.innerHTML = val['email'];
                         idRoleCell.innerHTML = val['id_role'];
                         aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-keterangan="'+val['keterangan']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
-                        aksiCell.innerHTML += '<button class="btn btn-primary" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
+                        aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
             }
@@ -154,7 +158,7 @@
                 $.ajax({
                     url : "{{ url('/api/users') }}",
                     type : "POST",
-                    data : { nama : nama, email : email, password : password, id_role : id_role , _token: "{{ csrf_token() }}" },
+                    data : { nama : nama, email : email, password : password, id_role : id_role, _token: "{{ csrf_token() }}" },
                     success : function(response) {
                         if (response.status == true) {
                             $("#nama").val('')

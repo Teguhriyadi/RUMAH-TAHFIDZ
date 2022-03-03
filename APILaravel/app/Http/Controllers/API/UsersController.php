@@ -16,7 +16,15 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $user = User::all();
+        $data = [];
+        foreach ($user as $u) {
+            $data[] = [
+                'nama' => $u->nama,
+                'email' => $u->email,
+                'id_role' => $u->getRole->keterangan
+            ];
+        }
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }

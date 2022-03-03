@@ -7,6 +7,7 @@ import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
+// ignore: duplicate_import
 import 'package:tahfidz/components/my_colors.dart';
 
 void main() {
@@ -30,13 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final heightBody = MediaQuery.of(context).size.height;
     final widhtBody = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         // shadowColor: Colors.transparent,
         elevation: 0,
         backgroundColor: mainColor,
         actions: [
+          // PopupMenuButton(itemBuilder: itemBuilder),
           Container(
             margin: EdgeInsets.only(right: 20),
             child: TextButton(
