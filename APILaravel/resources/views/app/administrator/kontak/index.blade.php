@@ -27,10 +27,24 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th>Nama</th>
+                                    <th>Judul</th>
                                     <th>Pesan</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @php $no = 0 @endphp
+                                @foreach($data_pesan as $pesan)
+                                <tr>
+                                    <td class="text-center">{{ ++$no }}.</td>
+                                    <td>{{ $pesan->nama }}</td>
+                                    <td>{{ $pesan->judul }}</td>
+                                    <td>{{ $pesan->pesan }}</td>
+                                    <td class="text-center">
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ Route::get("/layouts", [LandingPageController::class, "layouts"]);
 Route::get("/home", [LandingPageController::class, "home"]);
 Route::get("/tentang_kami", [LandingPageController::class, "tentang_kami"]);
 Route::get("/kontak", [LandingPageController::class, "kontak"]);
-
+Route::post("/kirim_pesan", [LandingPageController::class, "kirim_pesan"]);
 // Route::get("/layouts", [AppController::class, "layouts"]);
 // Route::get("/home", [AppController::class, "home"]);
 

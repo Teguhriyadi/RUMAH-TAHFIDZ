@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->integer("id_role");
             $table->string("no_hp", 30)->nullable();
+            $table->string("gambar")->nullable();
             $table->timestamps();
         });
     }
