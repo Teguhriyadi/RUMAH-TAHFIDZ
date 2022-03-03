@@ -1,14 +1,10 @@
 // ignore_for_file: deprecated_member_use
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/retry.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 import 'package:tahfidz/components/constants.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:tahfidz/model/profil.dart';
 
@@ -32,8 +28,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool showPassword = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController _controllerTelepon = new TextEditingController();
-  TextEditingController _controllerNama = new TextEditingController();
 
   @override
   void initState() {
@@ -42,25 +36,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getUser() async {
-    final client = RetryClient(http.Client());
-    try {
-      print("Ok");
-      ProgressDialog progressDialog = ProgressDialog(context);
-      var response = await client.get(Uri.parse(
-          // 'http://rtq-freelance.my.id/api/info_profil/' + widget.telepon));
-          'http://rtq-freelance.my.id/api/info_profil/000'));
-      print(response.body);
-      var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+    // Dio dio = new Dio();
 
-      _controllerNama.text = jsonResponse['data']['nama'];
-      _controllerTelepon.text = jsonResponse['data']['no_hp'];
-    } finally {
-      client.close();
-    }
+    // var coba = dio
+    //     .get('https://rtq-freelance.my.id/api/info_profil/' + widget.telepon);
+
+    print(widget.telepon);
   }
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _controllerTelepon = new TextEditingController();
+    TextEditingController _controllerNama = new TextEditingController();
+
     final heightBody = MediaQuery.of(context).size.height;
     final widthBody = MediaQuery.of(context).size.width;
 
@@ -80,7 +68,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style:
                 GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500),
           ),
-<<<<<<< HEAD
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -105,60 +92,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             bottomRight: Radius.circular(90.0),
                             bottomLeft: Radius.circular(90.0),
                           ),
-=======
-          Positioned(
-            top: 75,
-            child: ProfilePicture(
-              sizeAvatar: 150,
-              sizeBtn: 50,
-              sizeIcon: 20,
-              // sizeIcon: 150,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: widhtBody,
-              height: 420,
-              // color: Colors.green,
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: [
-                  buildTextField("Nama Lengkap", false, false, _controllerNama),
-                  buildTextField("Telepon", false, true, _controllerTelepon),
-                  // buildTextField("Nama Lengkap", "Nama", false, false),
-                  // buildTextFieldo("Nama Lengkap", "Nama", false, false),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {},
-                        child: Text("CANCEL",
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.black)),
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          print(_controllerTelepon.text);
-                          print(_controllerNama.text);
-                        },
-                        color: Colors.blue,
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Text(
-                          "SAVE",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.white),
->>>>>>> 3dcf0d7eda95dec3d98c6ab19dd9c0c411eae6ea
                         ),
                       ),
                     ),
@@ -233,8 +166,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildTextField(String labelText, bool isPasswordTextField, bool type,
-      dynamic controller) {
+  Widget buildTextField(String labelText, String placeholder,
+      bool isPasswordTextField, bool type, dynamic controller) {
     final typekey = TextInputType.number;
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
@@ -260,6 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
