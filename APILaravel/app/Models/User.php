@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsTo("App\Models\Role", "id_role", "id");
     }
 
+    public function coba()
+    {
+        return $this->belongsTo("App\Models\Role", "id_role", "id");
+    }
+
     public function getHakAkses()
     {
         // return $this->telepon;
