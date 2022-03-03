@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sp_util/sp_util.dart';
-import 'package:tahfidz/components/my_colors.dart';
+import 'package:tahfidz/components/constants.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 
 import 'model/profil.dart';
