@@ -16,6 +16,11 @@ class LandingPageController extends Controller
         return view("app.landing.home");
     }
 
+    public function tentang_kami()
+    {
+        return view("app.landing.tentang_kami.index");
+    }
+
     public function kontak()
     {
         return view("app.landing.kontak.index");
