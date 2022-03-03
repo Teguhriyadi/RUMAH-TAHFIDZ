@@ -174,3 +174,79 @@
 //                                   fontSize: 18,
 //                                   fontWeight: FontWeight.bold,
 //                                 ),
+
+// import 'dart:html';
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tahfidz/components/constants.dart';
+import 'package:tahfidz/components/profile_avatar.dart';
+
+void main() => runApp(MaterialApp(
+      home: Coba(),
+    ));
+
+class Coba extends StatelessWidget {
+  const Coba({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final widthBody = MediaQuery.of(context).size.width;
+    final heghtBody = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: mainColor,
+        title: Text(
+          "Profil",
+          style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Container(
+            width: widthBody,
+            height: heghtBody / 3,
+            decoration: BoxDecoration(
+              // color: mainColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
+              ),
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  top: 0,
+                  child: Container(
+                    width: widthBody,
+                    height: 145,
+                    // margin: EdgeInsets.all(100.0),
+                    decoration: BoxDecoration(
+                      color: mainColor,
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(50.0),
+                        bottomLeft: Radius.circular(50.0),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                    child: Card(
+                  elevation: 5,
+                  shape: CircleBorder(),
+                  child: ProfilePicture(
+                    sizeAvatar: 150,
+                    sizeBtn: 0,
+                  ),
+                )),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
