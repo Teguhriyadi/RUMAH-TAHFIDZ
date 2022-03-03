@@ -100,4 +100,13 @@ class AuthController extends Controller
             'message' => 'Logout Success!'
         ], 200);
     }
+
+    public function nanskuy()
+    {
+        $data = User::all();
+        return response()->json([
+            'message' => 'success',
+            'data' => $data
+        ]);
+    }
 }

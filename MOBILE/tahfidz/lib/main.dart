@@ -13,7 +13,6 @@ import 'package:tahfidz/components/my_colors.dart';
 import 'package:tahfidz/pages/pengajar/home/home_screen.dart';
 
 import 'model/profil.dart';
-// import 'package:tahfidz/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,6 +69,8 @@ class _MyAppPageState extends State<MyAppPage> {
 
           SpUtil.putBool("status", response.data['status']);
           SpUtil.putString("nama", response.data['data']['nama']);
+          SpUtil.putString("keterangan", response.data['data']['keterangan']);
+
           setState(() {
             _controllerTelepon.text = "";
             _controllerPassword.text = "";

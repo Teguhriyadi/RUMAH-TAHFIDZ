@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/components/item-menu.dart';
 import 'package:tahfidz/components/my_colors.dart';
@@ -22,7 +23,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final String? userName = SpUtil.getString("nama", defValue: "");
+  final String? nama = SpUtil.getString("nama", defValue: "");
+  final String? keterangan = SpUtil.getString("keterangan", defValue: "");
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.only(right: 20),
             child: TextButton(
               onPressed: () {
+                // ProgressDialog? progress = new ProgressDialog(context);
+                // progress.style(message: "Harap Tunggu...");
+                // progress.show();
+
                 SpUtil.clear();
                 Get.off(MyAppPage());
+
+                // progress.hide();
               },
               child: Icon(
                 Icons.settings,
@@ -110,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   sizeAvatar: 100, sizeBtn: 30, sizeIcon: 18),
                               SizedBox(height: 15),
                               Text(
-                                userName!,
+                                nama!,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -118,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Pengajar",
+                                keterangan!,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
