@@ -20,11 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [LandingPageController::class, "home"]);
 Route::get("/layouts", [LandingPageController::class, "layouts"]);
+Route::get("/home", [LandingPageController::class, "home"]);
 
 // Route::get("/layouts", [AppController::class, "layouts"]);
 // Route::get("/home", [AppController::class, "home"]);

@@ -10,4 +10,9 @@ class LandingPageController extends Controller
     {
         return view("app.landing.layouts.template");
     }
+
+    public function home()
+    {
+        return view("app.landing.home");
+    }
 }
