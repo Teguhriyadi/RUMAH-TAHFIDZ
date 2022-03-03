@@ -8,11 +8,13 @@ import 'package:tahfidz/components/profile_avatar.dart';
 
 import 'package:tahfidz/model/profil.dart';
 
-// void main(List<String> args) {
-//   runApp(MaterialApp(
-//     home: ProfileScreen(),
-//   ));
-// }
+void main(List<String> args) {
+  runApp(MaterialApp(
+    home: ProfileScreen(
+      telepon: '',
+    ),
+  ));
+}
 
 class ProfileScreen extends StatefulWidget {
   final String telepon;
@@ -48,103 +50,118 @@ class _ProfileScreenState extends State<ProfileScreen> {
     TextEditingController _controllerNama = new TextEditingController();
 
     final heightBody = MediaQuery.of(context).size.height;
-    final widhtBody = MediaQuery.of(context).size.width;
+    final widthBody = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          "Profil",
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: mainColor,
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
-            onPressed: () {
-              Get.back();
-            }),
-      ),
       backgroundColor: Colors.white,
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            top: 0,
-            child: Container(
-              height: 150,
-              width: widhtBody,
-              color: mainColor,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.only(
-              //     topRight: Radius.circular(40.0),
-              //     bottomRight: Radius.circular(40.0),
-              //   ),
-              // ),
-            ),
+      body: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: mainColor,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new),
+              onPressed: () {
+                Get.back();
+              }),
+          title: Text(
+            "Profil",
+            style:
+                GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500),
           ),
-          Positioned(
-            top: 75,
-            child: ProfilePicture(
-              sizeAvatar: 150,
-              sizeBtn: 50,
-              sizeIcon: 20,
-              // sizeIcon: 150,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: widhtBody,
-              height: 420,
-              // color: Colors.green,
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: [
-                  buildTextField(
-                      "Nama Lengkap", "Nama", false, false, _controllerNama),
-                  buildTextField(
-                      "Telepon", "Telepon", false, true, _controllerTelepon),
-                  // buildTextField("Nama Lengkap", "Nama", false, false),
-                  // buildTextFieldo("Nama Lengkap", "Nama", false, false),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {},
-                        child: Text("CANCEL",
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.black)),
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          print(_controllerTelepon.text);
-                          print(_controllerNama.text);
-                        },
-                        color: Colors.blue,
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Text(
-                          "SAVE",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.white),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: widthBody,
+                height: heightBody / 3.5,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        width: widthBody,
+                        height: 145,
+                        // margin: EdgeInsets.all(100.0),
+                        decoration: BoxDecoration(
+                          color: mainColor,
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(90.0),
+                            bottomLeft: Radius.circular(90.0),
+                          ),
                         ),
-                      )
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 5,
+                        child: Card(
+                          elevation: 5,
+                          shape: CircleBorder(),
+                          child: ProfilePicture(
+                            sizeAvatar: 150,
+                            sizeBtn: 0,
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                // color: mainColor,
+                width: widthBody,
+                height: heightBody / 2,
+                padding: EdgeInsets.all(20),
+                child: SingleChildScrollView(
+                  reverse: true,
+                  child: Column(
+                    children: [
+                      buildTextField(
+                          "Nama", "Namamu", false, false, _controllerNama),
+                      buildTextField(
+                          "Nama", "Namamu", false, false, _controllerNama),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          OutlineButton(
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            onPressed: () {},
+                            child: Text("CANCEL",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    letterSpacing: 2.2,
+                                    color: Colors.black)),
+                          ),
+                          RaisedButton(
+                            onPressed: () {
+                              // print(_controllerTelepon.text);
+                              // print(_controllerNama.text);
+                            },
+                            color: mainColor,
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              "SAVE",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  letterSpacing: 2.2,
+                                  color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          )
-        ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -191,6 +191,7 @@ class Coba extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int count = 10;
     final widthBody = MediaQuery.of(context).size.width;
     final heghtBody = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -203,50 +204,139 @@ class Coba extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Container(
-            width: widthBody,
-            height: heghtBody / 3,
-            decoration: BoxDecoration(
-              // color: mainColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  top: 0,
-                  child: Container(
-                    width: widthBody,
-                    height: 145,
-                    // margin: EdgeInsets.all(100.0),
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(50.0),
-                        bottomLeft: Radius.circular(50.0),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: widthBody,
+              height: heghtBody / 3.5,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                    top: 0,
+                    child: Container(
+                      width: widthBody,
+                      height: 145,
+                      // margin: EdgeInsets.all(100.0),
+                      decoration: BoxDecoration(
+                        color: mainColor,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(90.0),
+                          bottomLeft: Radius.circular(90.0),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                    child: Card(
-                  elevation: 5,
-                  shape: CircleBorder(),
-                  child: ProfilePicture(
-                    sizeAvatar: 150,
-                    sizeBtn: 0,
-                  ),
-                )),
-              ],
+                  Positioned(
+                      bottom: 5,
+                      child: Card(
+                        elevation: 5,
+                        shape: CircleBorder(),
+                        child: ProfilePicture(
+                          sizeAvatar: 150,
+                          sizeBtn: 0,
+                        ),
+                      )),
+                ],
+              ),
             ),
-          ),
-        ],
+            Container(
+              // color: mainColor,
+              width: widthBody,
+              height: heghtBody / 2,
+              padding: EdgeInsets.all(20),
+              child: SingleChildScrollView(
+                reverse: true,
+                child: Column(
+                  children: [
+                    buildTextField("Nama", "Namamu"),
+                    buildTextField("Nama", "Namamu"),
+                    buildTextField("Nama", "Namamu"),
+                    buildTextField("Nama", "Namamu"),
+                    buildTextField("Nama", "Namamu"),
+                    buildTextField("Nama", "Namamu"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        OutlineButton(
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          onPressed: () {},
+                          child: Text("CANCEL",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  letterSpacing: 2.2,
+                                  color: Colors.black)),
+                        ),
+                        RaisedButton(
+                          onPressed: () {
+                            // print(_controllerTelepon.text);
+                            // print(_controllerNama.text);
+                          },
+                          color: Colors.blue,
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Text(
+                            "SAVE",
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 2.2,
+                                color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
+}
+
+Widget buildTextField(
+  String labelText,
+  String placeholder,
+) {
+  final typekey = TextInputType.number;
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 35.0),
+    child: TextField(
+      // controller: controller,
+      // obscureText: isPasswordTextField ? showPassword : false,
+      // ignore: dead_code
+      // keyboardType: (type == true) ? typekey : null,
+      decoration: InputDecoration(
+          // suffixIcon: isPasswordTextField
+          //     ? IconButton(
+          //         onPressed: () {
+          //           setState(() {
+          //             showPassword = !showPassword;
+          //           });
+          //         },
+          //         icon: Icon(
+          //           Icons.remove_red_eye,
+          //           color: Colors.grey,
+          //         ),
+          //       )
+          // : null,
+          contentPadding: EdgeInsets.only(bottom: 3),
+          labelText: labelText,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: placeholder,
+          hintStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          )),
+    ),
+  );
 }
