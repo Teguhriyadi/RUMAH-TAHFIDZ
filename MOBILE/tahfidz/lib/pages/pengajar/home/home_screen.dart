@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:tahfidz/components/item-menu.dart';
-import 'package:tahfidz/components/my_colors.dart';
+import 'package:tahfidz/components/constants.dart';
 import 'package:tahfidz/components/profile_avatar.dart';
 import 'package:tahfidz/main.dart';
 // ignore: duplicate_import
-import 'package:tahfidz/components/my_colors.dart';
+import 'package:tahfidz/components/constants.dart';
 
 void main() {
   runApp(GetMaterialApp(
