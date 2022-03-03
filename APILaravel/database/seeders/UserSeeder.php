@@ -22,7 +22,9 @@ class UserSeeder extends Seeder
             "password" => bcrypt("password"),
             "alamat" => "Bandung",
             "no_hp" => "000",
-            "id_role" => 1
+            "id_role" => 1,
+            "tempat_lahir" => "Cirebon",
+            "tanggal_lahir" => "2020-01-01"
         ]);
 
         User::create([
@@ -32,7 +34,9 @@ class UserSeeder extends Seeder
             "password" => bcrypt("password"),
             "alamat" => "Bandung",
             "no_hp" => "001",
-            "id_role" => 2
+            "id_role" => 2,
+            "tempat_lahir" => "Bandung",
+            "tanggal_lahir" => "2020-01-01"
         ]);
     }
 }

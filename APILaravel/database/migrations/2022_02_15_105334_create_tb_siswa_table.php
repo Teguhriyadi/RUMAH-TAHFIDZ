@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("nama", 100)->nullable();
             $table->enum("jenis_kelamin", ["L", "P"]);
-            $table->text("alamat");
             $table->string("image", 150)->nullable();
             $table->string("nama_ayah", 100)->nullable();
             $table->string("nama_ibu", 100)->nullable();
