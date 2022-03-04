@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
             "alamat" => "Bandung",
             "no_hp" => "001",
             "id_role" => 2,
+            "gambar" => "https://unsplash.com/photos/IYKoA22EPHg",
             "tempat_lahir" => "Bandung",
             "tanggal_lahir" => "2020-01-01"
         ]);
