@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             "alamat" => "Bandung",
             "no_hp" => "001",
             "id_role" => 2,
-            "gambar" => "https://unsplash.com/photos/IYKoA22EPHg",
+            "gambar" => "http://rtq-freelance.my.id/gambar/gambar_user.png",
             "tempat_lahir" => "Bandung",
             "tanggal_lahir" => "2020-01-01"
         ]);

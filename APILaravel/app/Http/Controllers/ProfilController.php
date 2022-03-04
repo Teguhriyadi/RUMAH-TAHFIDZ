@@ -33,7 +33,7 @@ class ProfilController extends Controller
                 "no_hp" => $data->no_hp,
                 "alamat" => $data->alamat,
                 "jenis_kelamin" => $detail->jenis_kelamin,
-                "keterangan" => $data->getRole->keterangan,
+                "keterangan" => $data->getRole->keterangan, 
             ];
         } else {
             $profil = [
