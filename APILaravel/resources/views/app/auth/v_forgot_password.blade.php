@@ -49,7 +49,7 @@
                                         <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                             required autofocus>
                                     </div>
-
+i
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                             Forgot Password

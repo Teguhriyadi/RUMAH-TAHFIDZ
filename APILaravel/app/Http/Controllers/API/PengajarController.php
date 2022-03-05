@@ -17,7 +17,20 @@ class PengajarController extends Controller
      */
     public function index()
     {
-        $data = Pengajar::all();
+        $data_pengajar = Pengajar::all();
+        $data = [];
+
+        foreach ($data_pengajar as $pengajar) {
+            $data[] = [
+                "id" => $pengajar->id,
+                "nama" => $pengajar->nama,
+                "jenis_kelamin" => $pengajar->jenis_kelamin,
+                "telepon" => $pengajar->telepon,
+                "tempat_lahir" => $pengajar->tempat_lahir,
+                "tanggal_lahir" => $pengajar->tanggal_lahir,
+                "alamat" => $pengajar->alamat
+            ];
+        }
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -44,7 +57,9 @@ class PengajarController extends Controller
             "nama" => "required",
             "jenis_kelamin" => "required",
             "alamat" => "required",
-            "telepon" => "required"
+            "telepon" => "required",
+            "tempat_lahir" => "required",
+            "tanggal_lahir" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -55,7 +70,6 @@ class PengajarController extends Controller
             'id' => time(),
             "nama" => $request->nama,
             "jenis_kelamin" => $request->jenis_kelamin,
-            "alamat" => $request->alamat,
             "telepon" => $request->telepon
         ]);
 
@@ -66,7 +80,10 @@ class PengajarController extends Controller
             "password" => bcrypt("password"),
             "alamat" => $request->alamat,
             "id_role" => 2,
-            "no_hp" => $request->telepon
+            "no_hp" => $request->telepon,
+            "alamat" => $request->alamat,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir
         ]);
 
         if ($cek) {

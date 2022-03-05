@@ -17,7 +17,21 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
+        $data_siswa = Siswa::all();
+        $data = [];
+        foreach ($data_siswa as $siswa) {
+            $data[] = [
+                "id" => $siswa->id,
+                "nama" => $siswa->nama,
+                "jenis_kelamin" => $siswa->jenis_kelamin,
+                "no_hp" => $siswa->no_hp,
+                "tempat_lahir" => $siswa->getUser->tempat_lahir,
+                "tanggal_lahir" => $siswa->getUser->tanggal_lahir,
+                "alamat" => $siswa->getUser->alamat,
+                "nama_ayah" => $siswa->nama_ayah,
+                "nama_ibu" => $siswa->nama_ibu
+            ];
+        }
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -46,7 +60,9 @@ class SiswaController extends Controller
             "alamat" => "required",
             "nama_ayah" => "required",
             "nama_ibu" => "required",
-            "no_hp" => "required"
+            "no_hp" => "required",
+            "tempat_lahir" => "required",
+            "tanggal_lahir" => "required"
         ]);
 
         if ($validasi->fails()) {
@@ -57,7 +73,6 @@ class SiswaController extends Controller
             'id' => time(),
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
             'nama_ayah' => $request->nama_ayah,
             'nama_ibu' => $request->nama_ibu,
             'no_hp' => $request->no_hp
@@ -70,7 +85,9 @@ class SiswaController extends Controller
             "password" => bcrypt("password"),
             "alamat" => $request->alamat,
             "id_role" => 3,
-            "no_hp" => $request->no_hp
+            "no_hp" => $request->no_hp,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir
         ]);
 
         if ($cek) {
@@ -96,7 +113,19 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::findOrfail($id);
+        $data_siswa = Siswa::where("id", $id)->first();
+
+        $data = [
+            "id" => $data_siswa->id,
+            "nama" => $data_siswa->nama,
+            "jenis_kelamin" => $data_siswa->jenis_kelamin,
+            "no_hp" => $data_siswa->no_hp,
+            "tempat_lahir" => $data_siswa->getUser->tempat_lahir,
+            "tanggal_lahir" => $data_siswa->getUser->tanggal_lahir,
+            "alamat" => $data_siswa->getUser->alamat,
+            "nama_ayah" => $data_siswa->nama_ayah,
+            "nama_ibu" => $data_siswa->nama_ibu
+        ];
 
         return response()->json(['message' => 'Request Success!', 'data' => $data], 200);
     }
@@ -127,7 +156,9 @@ class SiswaController extends Controller
             'alamat' => 'required',
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
-            'no_hp' => 'required'
+            'no_hp' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required'
         ]);
 
         if ($validasi->fails()) {
@@ -137,7 +168,6 @@ class SiswaController extends Controller
         $cek_siswa = Siswa::where('id', $id)->update([
             "nama" => $request->nama,
             "jenis_kelamin" => $request->jenis_kelamin,
-            "alamat" => $request->alamat,
             "nama_ayah" => $request->nama_ayah,
             "nama_ibu" => $request->nama_ibu,
             "no_hp" => $request->no_hp,
@@ -146,7 +176,9 @@ class SiswaController extends Controller
         $cek = User::where("no_hp", $request->oldNoHp)->update([
             "nama" => $request->nama,
             "alamat" => $request->alamat,
-            "no_hp" => $request->oldNoHp
+            "no_hp" => $request->oldNoHp,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir
         ]);
 
         if ($cek) {

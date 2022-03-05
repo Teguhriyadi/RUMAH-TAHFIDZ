@@ -79,7 +79,20 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tempat_lahir"> Tempat Lahir </label>
+                            <input type="text" class="form-control" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tanggal_lahir"> Tanggal Lahir </label>
+                            <input type="date" class="form-control" id="tanggal_lahir">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="alamat"> Alamat </label>
                     <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
@@ -175,8 +188,9 @@
 
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
-                        alamatCell.innerHTML = val['alamat'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-telepon="'+val["telepon"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        alamatCell.innerHTML = val['telepon'];
+                        // aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-telepon="'+val["telepon"]+'" data-tempat_lahir="'+val['tempat_lahir']+'" data-tanggal_lahir="'+val['tanggal_lahir']+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        aksiCell.innerHTML += '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'"><i class="fa fa-edit"></i> Edit</button>'
                         aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
@@ -187,17 +201,22 @@
     $(document).ready(function() {
         $("body").on('click', '#btnEdit', function() {
             let id = $(this).data('id');
-            let nama = $(this).data('nama');
-            let jenis_kelamin = $(this).data('jenis_kelamin');
-            let alamat = $(this).data('alamat');
-            let telepon = $(this).data('telepon');
 
-            $("#id").val(id)
-            $("#nm").val(nama)
-            $("#jk").val(jenis_kelamin)
-            $("#address").val(alamat)
-            $("#tlp").val(telepon)
-            $("#oldNoHp").val(telepon)
+            $.get('{{ url("app/admin/pengajar/") }}/' + id, function (response) {
+                console.log(response.data.nama);
+                $("#id").val(id)
+                $("#nm").val(response.data.nama)
+                $("#jk").val(response.data.jenis_kelamin)
+                // $("#address").val(alamat)
+                $("#tlp").val(response.data.telepon)
+                // $("#oldNoHp").val(response.data.telepon)
+            })
+            // let nama = $(this).data('nama');
+            // let jenis_kelamin = $(this).data('jenis_kelamin');
+            // let alamat = $(this).data('alamat');
+            // let telepon = $(this).data('telepon');
+
+
         });
 
         $("#btn-tambah").on('click', function() {
@@ -205,8 +224,10 @@
             let jenis_kelamin = $("#jenis_kelamin").val().trim();
             let alamat = $("#alamat").val().trim();
             let telepon = $("#telepon").val().trim();
+            let tempat_lahir = $("#tempat_lahir").val().trim();
+            let tanggal_lahir = $("#tanggal_lahir").val().trim();
 
-            if (nama == "", jenis_kelamin == "", alamat == "", telepon == "") {
+            if (nama == "" || jenis_kelamin == "" || alamat == "" || telepon == "" || tempat_lahir == "" || tanggal_lahir == "") {
                 Swal.fire({
                     title : "Oops",
                     text : "Data Tidak Boleh Kosong",
@@ -216,13 +237,15 @@
                 $.ajax({
                     url : "{{ url('/api/pengajar') }}",
                     type : "POST",
-                    data : { nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, telepon : telepon, _token: "{{ csrf_token() }}" },
+                    data : { nama : nama, jenis_kelamin : jenis_kelamin, tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir ,alamat : alamat, telepon : telepon, _token: "{{ csrf_token() }}" },
                     success : function(response) {
                         if (response.status == true) {
                             $("#nama").val('');
                             $("#jenis_kelamin").val('');
                             $("#alamat").val('');
                             $("#telepon").val('');
+                            $("#tempat_lahir").val('');
+                            $("#tanggal_lahir").val('');
                             tampilData()
                             $("#modalTambah").modal('hide')
                             Swal.fire({

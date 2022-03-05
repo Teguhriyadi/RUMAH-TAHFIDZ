@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PengajarController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\AppController;
@@ -67,6 +68,8 @@ Route::prefix("/app")->group(function () {
                 Route::get("/pengajar", function () {
                     return view("/app/administrator/pengajar/index");
                 });
+
+                Route::get('pengajar/{id}', [PengajarController::class, 'show']);
 
                 Route::get("/pesan", [PesanController::class, "index"]);
             });

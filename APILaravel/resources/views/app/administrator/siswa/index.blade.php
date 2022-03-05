@@ -1,12 +1,14 @@
 @extends("app/administrator/layouts/template")
 
-@section("app_title", "Data Siswa")
+@section("app_title", "Siswa")
 
 @section("app_content")
 
 <section class="section">
     <div class="section-header">
-        <h1>Data Siswa</h1>
+        <h1>
+            @yield("app_title")
+        </h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active">
                 <a href="{{ url('/app/admin/home') }}">Home</a>
@@ -29,7 +31,7 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th>Nama</th>
-                                    <th>Alamat</th>
+                                    <th class="text-center">No. HP</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -79,7 +81,20 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tempat_lahir"> Tempat Lahir </label>
+                            <input type="text" class="form-control" id="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tanggal_lahir"> Tanggal Lahir </label>
+                            <input type="date" class="form-control" id="tanggal_lahir">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="alamat"> Alamat </label>
                     <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
@@ -116,7 +131,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="fa fa-pencil"></i> Edit Data
+                    <i class="fa fa-edit"></i> Edit Data
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -147,7 +162,20 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tempat_lahir"> Tempat Lahir </label>
+                            <input type="text" class="form-control" id="tmpt_lahir" placeholder="Masukkan Tempat Lahir">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tanggal_lahir"> Tanggal Lahir </label>
+                            <input type="date" class="form-control" id="tgl_lahir">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="alamat"> Alamat </label>
                     <textarea name="alamat" id="address" cols="30" rows="10" class="form-control" placeholder="Masukkan Alamat"></textarea>
@@ -156,13 +184,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_ayah"> Nama Ayah </label>
-                            <input type="text" name="nama_ayah" id="ayah" class="form-control" placeholder="Masukkan Nama Ayah">
+                            <input type="text" id="ayah" class="form-control" placeholder="Masukkan Nama Ayah">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_ibu"> Nama Ibu </label>
-                            <input type="text" name="nama_ibu" id="ibu" class="form-control" placeholder="Masukkan Nama Ibu">
+                            <input type="text" id="ibu" class="form-control" placeholder="Masukkan Nama Ibu">
                         </div>
                     </div>
                 </div>
@@ -198,13 +226,13 @@
                         let newRow = empTable.insertRow(-1);
                         let nomer = newRow.insertCell(0);
                         let namaCell = newRow.insertCell(1);
-                        let alamatCell = newRow.insertCell(2);
+                        let noHpCell = newRow.insertCell(2);
                         let aksiCell = newRow.insertCell(3);
 
                         nomer.innerHTML = no++;
                         namaCell.innerHTML = val['nama'];
-                        alamatCell.innerHTML = val['alamat'];
-                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-nama_ayah="'+val["nama_ayah"]+'" data-nama_ibu="'+val["nama_ibu"]+'" data-no_hp="'+val["no_hp"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
+                        noHpCell.innerHTML = val['no_hp'];
+                        aksiCell.innerHTML = '<button class="btn btn-warning" id="btnEdit" data-target="#modalEdit" data-toggle="modal" data-id="'+val['id']+'" data-nama="'+val["nama"]+'" data-jenis_kelamin="'+val['jenis_kelamin']+'" data-alamat="'+val['alamat']+'" data-tempat_lahir="'+val['tempat_lahir']+'" data-tanggal_lahir="'+val['tanggal_lahir']+'" data-nama_ayah="'+val["nama_ayah"]+'" data-nama_ibu="'+val["nama_ibu"]+'" data-no_hp="'+val["no_hp"]+'"><i class="fa fa-edit"></i> Edit </button> &nbsp;'
                         aksiCell.innerHTML += '<button class="btn btn-danger" onclick="hapusData('+val['id']+')"><i class="fa fa-trash"></i> Hapus</button>'
                     }
                 }
@@ -221,6 +249,10 @@
             let nama_ayah = $(this).data('nama_ayah');
             let nama_ibu = $(this).data('nama_ibu');
             let no_hp = $(this).data('no_hp');
+            let tempat_lahir = $(this).data('tempat_lahir');
+            let tanggal_lahir = $(this).data('tanggal_lahir');
+
+            console.log($(this).data())
 
             $("#id").val(id)
             $("#nm").val(nama)
@@ -230,6 +262,9 @@
             $("#ibu").val(nama_ibu)
             $("#hp").val(no_hp)
             $("#oldNoHp").val(no_hp)
+            $("#tmpt_lahir").val(tempat_lahir)
+            $("#tgl_lahir").val(tanggal_lahir)
+
         });
 
         $("#btn-tambah").on('click', function() {
@@ -239,8 +274,10 @@
             let nama_ayah = $("#nama_ayah").val().trim();
             let nama_ibu = $("#nama_ibu").val().trim();
             let no_hp = $("#no_hp").val().trim();
+            let tempat_lahir = $("#tempat_lahir").val().trim();
+            let tanggal_lahir = $("#tanggal_lahir").val().trim();
 
-            if (nama == "", jenis_kelamin == "", alamat == "", nama_ayah == "", nama_ibu == "", no_hp == "") {
+            if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
                 Swal.fire({
                     title : "Oops",
                     text : "Data Tidak Boleh Kosong",
@@ -250,7 +287,7 @@
                 $.ajax({
                     url : "{{ url('/api/siswa') }}",
                     type : "POST",
-                    data : { nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, _token: "{{ csrf_token() }}" },
+                    data : { nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir ,_token: "{{ csrf_token() }}" },
                     success : function(response) {
                         if (response.status == true) {
                             $("#nama").val('');
@@ -259,6 +296,8 @@
                             $("#nama_ayah").val('');
                             $("#nama_ibu").val('');
                             $("#no_hp").val('');
+                            $("#tempat_lahir").val('');
+                            $("#tanggal_lahir").val('');
                             tampilData()
                             $("#modalTambah").modal('hide')
                             Swal.fire({
@@ -287,8 +326,10 @@
             let nama_ibu = $("#ibu").val().trim();
             let no_hp = $("#hp").val().trim();
             let oldNoHp = $("#oldNoHp").val().trim();
+            let tempat_lahir = $("#tmpt_lahir").val().trim();
+            let tanggal_lahir = $("#tgl_lahir").val().trim();
 
-            if (nama == "", jenis_kelamin == "", alamat == "", nama_ayah == "", nama_ibu == "", no_hp == "") {
+            if (nama == "" || jenis_kelamin == "" || alamat == "" || nama_ayah == "" || nama_ibu == "" || no_hp == "" || tempat_lahir == "" || tanggal_lahir == "") {
                 Swal.fire({
                     title : "Oops",
                     text : "Data tidak boleh kosong",
@@ -298,7 +339,7 @@
                 $.ajax({
                     url : "{{ url('/api/siswa/') }}/" + id,
                     type : "POST",
-                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, oldNoHp : oldNoHp , _token: "{{ csrf_token() }}", _method : "PUT" },
+                    data : { id : id, nama : nama, jenis_kelamin : jenis_kelamin, alamat : alamat, nama_ayah : nama_ayah, nama_ibu : nama_ibu, no_hp : no_hp, oldNoHp : oldNoHp , tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir , _token: "{{ csrf_token() }}", _method : "PUT" },
                     success : function(response) {
                         console.log(response)
                         if (response.status == true) {
@@ -310,6 +351,8 @@
                             $("#ibu").val()
                             $("#hp").val()
                             $("#oldNoHp").val()
+                            $("#tmpt_lahir").val()
+                            $("#tgl_lahir").val()
                             tampilData()
                             $("#modalEdit").modal('hide')
                             Swal.fire({
